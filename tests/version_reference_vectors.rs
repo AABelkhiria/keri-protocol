@@ -141,7 +141,7 @@ struct MajorEmissionQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-version/v1.json"
+        "/fixtures/version/v1.json"
     )))?)
 }
 

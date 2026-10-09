@@ -10,7 +10,7 @@ use signify_keri::prefix::IdentifierPrefix;
 use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
 use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
-/// Identifiers and a message body pinned by `fixtures/keri-exchange/v1.json`.
+/// Identifiers and a message body pinned by `fixtures/exchange/v1.json`.
 const SENDER: &str = "EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL";
 const RECIPIENT: &str = "EAKUR-LmLHWMwXTLWQ1QjxHrihBmwwrV2tYaSG7hOrWj";
 const STAMP: &str = "2023-08-30T17:22:54.183000+00:00";

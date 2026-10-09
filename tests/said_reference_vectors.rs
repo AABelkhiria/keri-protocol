@@ -90,7 +90,7 @@ struct AppendQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-said/v1.json"
+        "/fixtures/said/v1.json"
     )))?)
 }
 

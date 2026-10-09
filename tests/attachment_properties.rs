@@ -21,7 +21,7 @@ const EVENT: &str = concat!(
 const SIGNATURE: &str = "AABB3MJGmBXxSEryNHw3YwZZLRl_6Ws4Me2WFq8PrQ6WlluSOpPqbwXuiG9RvNWZkqeW8A_0VRjokGMVRZ3m-c0I";
 const IDENTIFIER: &str = "EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL";
 
-/// Witness material from `fixtures/keri-attachment-keripy/v1.json`.
+/// Witness material from `fixtures/attachment-keripy/v1.json`.
 const WITNESS_KEY: &str = "BAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4";
 const TRANSFERABLE_KEY: &str = "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4";
 const WITNESS_SIGNATURE: &str =

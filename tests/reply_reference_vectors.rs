@@ -86,7 +86,7 @@ struct UnreachableCheckQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-reply/v1.json"
+        "/fixtures/reply/v1.json"
     )))?)
 }
 

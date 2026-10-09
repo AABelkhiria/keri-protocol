@@ -12,7 +12,7 @@
 //! regular expression, accepts arbitrary surrounding text, coerces hexadecimal version digits with
 //! decimal semantics (`a`–`f` become `NaN`), mutates a module-global default `Version` object on
 //! every successful parse, and emits out-of-range sizes as overlong invalid strings. Those
-//! behaviors are recorded as defects in `fixtures/keri-version/` and are deliberately not
+//! behaviors are recorded as defects in `fixtures/version/` and are deliberately not
 //! reproduced.
 
 mod event;

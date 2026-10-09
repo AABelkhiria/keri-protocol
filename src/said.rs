@@ -8,7 +8,7 @@
 //!
 //! This module ports `src/keri/core/saider.ts`. Two reference behaviors are deliberately not
 //! reproduced because they are unsafe rather than merely different; both are recorded in
-//! `PORTING.md` §9 and pinned by `fixtures/keri-said/`:
+//! `PORTING.md` §9 and pinned by `fixtures/said/`:
 //!
 //! - The reference's default `verify` never inspects the SAD's own identifier field, so it returns
 //!   `true` for a message whose `d` is empty or holds an entirely different SAID. Rust requires the

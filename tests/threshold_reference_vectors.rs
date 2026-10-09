@@ -93,7 +93,7 @@ struct IndexQuirk {
 fn fixture() -> Result<Fixture, serde_json::Error> {
     serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-threshold/v1.json"
+        "/fixtures/threshold/v1.json"
     )))
 }
 

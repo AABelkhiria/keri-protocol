@@ -2,7 +2,7 @@
 //!
 //! The pinned signify-ts reference cannot emit witness indexed-signature groups or
 //! non-transferable receipt couples, so these two group kinds are verified against keripy
-//! instead. See ADR 0009 and `fixtures/keri-attachment-keripy/README.md`.
+//! instead. See ADR 0009 and `fixtures/attachment-keripy/README.md`.
 
 use std::error::Error;
 
@@ -77,7 +77,7 @@ struct ReferenceFacts {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-attachment-keripy/v1.json"
+        "/fixtures/attachment-keripy/v1.json"
     )))?)
 }
 
@@ -313,7 +313,7 @@ fn keripy_rejections_map_to_stable_rust_error_categories() -> Result<(), Box<dyn
 fn the_python_guard_is_reachable_where_the_typescript_guard_is_not() -> Result<(), Box<dyn Error>> {
     let fixture = fixture()?;
     // `'B' in NonTransDex` is true in Python -- the same expression whose JavaScript translation
-    // is pinned false in fixtures/keri-attachment/v1.json. That contrast is the entire reason
+    // is pinned false in fixtures/attachment/v1.json. That contrast is the entire reason
     // this fixture exists.
     assert!(fixture.reference_facts.code_b_is_in_non_trans_dex);
     assert_eq!(

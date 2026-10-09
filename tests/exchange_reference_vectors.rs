@@ -177,7 +177,7 @@ struct LooseArgumentsQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-exchange/v1.json"
+        "/fixtures/exchange/v1.json"
     )))?)
 }
 

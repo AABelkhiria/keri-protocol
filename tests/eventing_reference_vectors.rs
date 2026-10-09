@@ -171,7 +171,7 @@ struct OmittedFieldQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/fixtures/keri-eventing/v1.json"
+        "/fixtures/eventing/v1.json"
     )))?)
 }
 

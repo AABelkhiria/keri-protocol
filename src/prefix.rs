@@ -13,7 +13,7 @@
 //!   fields at once so the finished event commits to itself.
 //!
 //! This module ports `src/keri/core/prefixer.ts`. Four reference behaviors are deliberately not
-//! reproduced; all four are pinned by `fixtures/keri-prefix/` and recorded in `PORTING.md` §9:
+//! reproduced; all four are pinned by `fixtures/prefix/` and recorded in `PORTING.md` §9:
 //!
 //! - The public `derive` and `verify` methods gate on `sad['i']`, the *identifier* field, instead
 //!   of `sad['t']`, the event kind. Both therefore throw `Non-incepting ilk` for every real event,
