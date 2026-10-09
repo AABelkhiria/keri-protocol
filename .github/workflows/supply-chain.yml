@@ -33,10 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: EmbarkStudios/cargo-deny-action@v2
-        with:
-          command: check
-      - uses: EmbarkStudios/cargo-deny-action@v2
-        with:
-          command: check
-          manifest-path: fuzz/Cargo.toml
+      - run: rustup toolchain install
+      - uses: taiki-e/install-action@cargo-deny
+      - run: cargo deny check
+      - run: cargo deny --manifest-path fuzz/Cargo.toml check
