@@ -5,6 +5,7 @@ description = "KERI protocol messages: events, SAIDs, prefixes, thresholds and C
 edition = "2024"
 rust-version = "1.97"
 publish = false
+license = "Apache-2.0 OR MIT"
 keywords = ["keri", "kel", "tel", "cesr", "identity"]
 categories = ["cryptography", "encoding"]
 
