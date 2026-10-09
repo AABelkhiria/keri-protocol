@@ -24,14 +24,13 @@ records the decision to verify these two group kinds against keripy.
 
 ## Generation
 
-The generator needs a Python 3.12+ environment with the pinned `reference/keripy` checkout
-installed. From the repository root:
+keripy is pinned by commit in `tools/reference-vectors/pyproject.toml` and locked, with hashes, in
+`uv.lock` beside it; `uv` installs it and a matching Python. From the repository root:
 
 ```bash
-uv venv --python 3.12 .venv-keripy
-uv pip install --python .venv-keripy/bin/python ./reference/keripy
-.venv-keripy/bin/python tools/reference-vectors/attachment_keripy.py --write   # regenerate
-.venv-keripy/bin/python tools/reference-vectors/attachment_keripy.py --check   # verify determinism
+uv sync --locked --project tools/reference-vectors
+uv run --project tools/reference-vectors python tools/reference-vectors/attachment_keripy.py --write   # regenerate
+uv run --project tools/reference-vectors python tools/reference-vectors/attachment_keripy.py --check   # verify determinism
 ```
 
 Set `DYLD_LIBRARY_PATH=/opt/homebrew/lib` (or your libsodium location) if pysodium cannot find

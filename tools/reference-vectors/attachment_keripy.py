@@ -1,14 +1,13 @@
-"""Generates and checks witness/receipt attachment vectors from the pinned keripy checkout.
+"""Generates and checks witness/receipt attachment vectors from the pinned keripy.
 
 signify-ts cannot emit witness indexed-signature groups or non-transferable receipt couples --
 its guards are unreachable and its counters are wrong (see fixtures/attachment/README.md) --
-so these two group kinds are verified against keripy instead, per ADR 0009. Run with a Python
-3.12+ environment that has the pinned ``reference/keripy`` checkout installed:
+so these two group kinds are verified against keripy instead, per ADR 0009. keripy is pinned in
+``pyproject.toml`` and ``uv.lock`` beside this file; run from the repository root:
 
-    uv venv --python 3.12 .venv-keripy
-    uv pip install --python .venv-keripy/bin/python ./reference/keripy
-    DYLD_LIBRARY_PATH=/opt/homebrew/lib .venv-keripy/bin/python \\
-        tools/reference-vectors/attachment_keripy.py --write   # or --check
+    uv sync --locked --project tools/reference-vectors
+    DYLD_LIBRARY_PATH=/opt/homebrew/lib uv run --project tools/reference-vectors \\
+        python tools/reference-vectors/attachment_keripy.py --write   # or --check
 
 ``DYLD_LIBRARY_PATH`` is only needed where pysodium cannot find libsodium on its own.
 """
@@ -23,8 +22,8 @@ from keri.core.eventing import SealEvent
 from keri.core.indexing import Siger
 from keri.core.signing import Signer
 
-REFERENCE_SHA = "4ce4cc79e06653f77342be1bf604086b89b1f090"
-REFERENCE_VERSION = "1.3.6"
+from reference import REFERENCE_SHA, REFERENCE_VERSION
+
 GENERATED_ON = "2026-08-19"
 
 # The exact inception event the pinned signify-ts unit test builds, reused verbatim from
