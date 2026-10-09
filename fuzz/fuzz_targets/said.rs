@@ -2,9 +2,9 @@
 #![forbid(unsafe_code)]
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::Sad;
 use libfuzzer_sys::fuzz_target;
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::Sad;
 
 fuzz_target!(|data: &[u8]| {
     // Hostile qualified text may only ever produce a typed error or a usable identifier.

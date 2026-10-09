@@ -4,9 +4,9 @@
 use std::str::FromStr;
 
 use keri_cesr::bytes::utf8_text;
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::serialization::{Protocol, SerializationKind, VersionString};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::event::kind::EventKind;
-use signify_keri::serialization::{Protocol, SerializationKind, VersionString};
 
 fuzz_target!(|data: &[u8]| {
     if let Ok(text) = utf8_text(data) {

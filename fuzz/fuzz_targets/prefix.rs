@@ -1,9 +1,9 @@
 #![no_main]
 #![forbid(unsafe_code)]
 
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
+use keri_protocol::serialization::{Sad, SadValue};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
-use signify_keri::serialization::{Sad, SadValue};
 
 /// Rebuilds a SAD with one field replaced or appended, preserving field order.
 fn with_field(sad: &Sad, label: &str, value: &str) -> Option<Sad> {

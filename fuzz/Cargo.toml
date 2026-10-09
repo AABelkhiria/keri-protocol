@@ -1,0 +1,83 @@
+[package]
+name = "keri-protocol-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+keri-protocol = { path = ".." }
+keri-cesr = { version = "0.1.0", features = ["crypto"] }
+libfuzzer-sys = "0.4.13"
+
+[[bin]]
+name = "attachment"
+path = "fuzz_targets/attachment.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "eventing"
+path = "fuzz_targets/eventing.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "exchange"
+path = "fuzz_targets/exchange.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "prefix"
+path = "fuzz_targets/prefix.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "registry"
+path = "fuzz_targets/registry.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "reply"
+path = "fuzz_targets/reply.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "said"
+path = "fuzz_targets/said.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "serder"
+path = "fuzz_targets/serder.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "threshold"
+path = "fuzz_targets/threshold.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "version"
+path = "fuzz_targets/version.rs"
+test = false
+doc = false
+bench = false

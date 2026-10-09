@@ -2,3 +2,6 @@
 /tools/reference-vectors/node_modules/
 /tools/reference-vectors/.venv/
 /tools/reference-vectors/__pycache__/
+/fuzz/corpus/
+/fuzz/artifacts/
+/fuzz/target/

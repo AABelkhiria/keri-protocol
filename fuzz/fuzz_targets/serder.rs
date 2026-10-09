@@ -1,8 +1,8 @@
 #![no_main]
 #![forbid(unsafe_code)]
 
+use keri_protocol::serialization::{Sad, SerializedEvent};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::serialization::{Sad, SerializedEvent};
 
 fuzz_target!(|data: &[u8]| {
     // Untrusted JSON must only ever produce a typed error or a value that survives a byte-exact

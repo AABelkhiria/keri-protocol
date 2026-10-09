@@ -2,8 +2,8 @@
 #![forbid(unsafe_code)]
 
 use keri_cesr::bytes::utf8_text;
+use keri_protocol::threshold::{RationalWeight, SigningThreshold};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::threshold::{RationalWeight, SigningThreshold};
 
 fuzz_target!(|data: &[u8]| {
     if let Ok(text) = utf8_text(data) {

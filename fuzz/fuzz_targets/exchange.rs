@@ -1,14 +1,14 @@
 #![no_main]
 #![forbid(unsafe_code)]
 
+use keri_protocol::event::EventError;
+use keri_protocol::event::exchange::{ExchangeBuilder, ExchangeEmbed, MAX_EMBED_LABEL_BYTES};
+use keri_protocol::event::reply::MAX_ROUTE_BYTES;
+use keri_protocol::event::timestamp::Timestamp;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::event::EventError;
-use signify_keri::event::exchange::{ExchangeBuilder, ExchangeEmbed, MAX_EMBED_LABEL_BYTES};
-use signify_keri::event::reply::MAX_ROUTE_BYTES;
-use signify_keri::event::timestamp::Timestamp;
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 /// Identifiers and a message body pinned by `fixtures/exchange/v1.json`.
 const SENDER: &str = "EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL";

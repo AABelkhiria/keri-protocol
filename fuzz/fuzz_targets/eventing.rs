@@ -3,16 +3,16 @@
 
 use keri_cesr::crypto::digest::Digest;
 use keri_cesr::crypto::verifier::VerificationKey;
+use keri_protocol::event::inception::InceptionBuilder;
+use keri_protocol::event::interaction::InteractionBuilder;
+use keri_protocol::event::rotation::{RotationBuilder, RotationKind};
+use keri_protocol::event::witness::{AmpleMode, ample};
+use keri_protocol::event::{ConfigurationTrait, KeyEvent, ThresholdEncoding};
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
+use keri_protocol::threshold::SigningThreshold;
 use libfuzzer_sys::fuzz_target;
-use signify_keri::event::inception::InceptionBuilder;
-use signify_keri::event::interaction::InteractionBuilder;
-use signify_keri::event::rotation::{RotationBuilder, RotationKind};
-use signify_keri::event::witness::{AmpleMode, ample};
-use signify_keri::event::{ConfigurationTrait, KeyEvent, ThresholdEncoding};
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
-use signify_keri::threshold::SigningThreshold;
 
 const KEYS: [&str; 4] = [
     "DFs8BBx86uytIM0D2BhsE5rrqVIT8ef8mflpNceHo4XH",

@@ -4,14 +4,14 @@
 use keri_cesr::crypto::signature::{IndexedSignature, UnindexedSignature};
 use keri_cesr::crypto::verifier::VerificationKey;
 use keri_cesr::sequence::SequenceNumber;
-use libfuzzer_sys::fuzz_target;
-use signify_keri::attachment::{
+use keri_protocol::attachment::{
     AttachmentError, AttachmentFraming, ReceiptCouple, SealSourceCouple, SealSourceTriple, SignatureSeal,
     SignedMessageBuilder,
 };
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::Said;
-use signify_keri::serialization::SerializedEvent;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::Said;
+use keri_protocol::serialization::SerializedEvent;
+use libfuzzer_sys::fuzz_target;
 
 const SIGNATURE: &str = "AABB3MJGmBXxSEryNHw3YwZZLRl_6Ws4Me2WFq8PrQ6WlluSOpPqbwXuiG9RvNWZkqeW8A_0VRjokGMVRZ3m-c0I";
 const IDENTIFIER: &str = "EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL";

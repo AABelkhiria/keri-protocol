@@ -1,11 +1,11 @@
 #![no_main]
 #![forbid(unsafe_code)]
 
+use keri_protocol::event::reply::{MAX_ROUTE_BYTES, ReplyBuilder};
+use keri_protocol::event::timestamp::Timestamp;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use libfuzzer_sys::fuzz_target;
-use signify_keri::event::reply::{MAX_ROUTE_BYTES, ReplyBuilder};
-use signify_keri::event::timestamp::Timestamp;
-use signify_keri::said::{DEFAULT_SAID_LABEL, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 fuzz_target!(|data: &[u8]| {
     // The timestamp parser is the only parser in this module and it runs on caller-supplied text,

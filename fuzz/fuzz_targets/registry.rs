@@ -9,10 +9,10 @@
 //! its declared size, reparses losslessly, carries its own digest as its identifier in both
 //! fields, and returns the nonce and backers verbatim.
 
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::registry::{MAX_BACKER_BYTES, MAX_BACKERS, MAX_NONCE_BYTES, RegistryInceptionBuilder};
+use keri_protocol::serialization::SerializedEvent;
 use libfuzzer_sys::fuzz_target;
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::registry::{MAX_BACKER_BYTES, MAX_BACKERS, MAX_NONCE_BYTES, RegistryInceptionBuilder};
-use signify_keri::serialization::SerializedEvent;
 
 const ISSUER: &str = "ECJIoBpEcCWMzvquk861dXP8JJZ-vbmJczlDR-NYcE3g";
 
