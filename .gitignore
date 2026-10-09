@@ -1,3 +1,4 @@
 /target/
 /tools/reference-vectors/node_modules/
 /tools/reference-vectors/.venv/
+/tools/reference-vectors/__pycache__/
