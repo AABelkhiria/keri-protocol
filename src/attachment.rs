@@ -298,8 +298,8 @@ impl SignedMessage {
 /// use keri_cesr::crypto::digest::Digest;
 /// use keri_cesr::crypto::signature::IndexedSignature;
 /// use keri_cesr::crypto::verifier::VerificationKey;
-/// use signify_keri::attachment::SignedMessageBuilder;
-/// use signify_keri::event::inception::InceptionBuilder;
+/// use keri_protocol::attachment::SignedMessageBuilder;
+/// use keri_protocol::event::inception::InceptionBuilder;
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let key = VerificationKey::from_qb64("DFs8BBx86uytIM0D2BhsE5rrqVIT8ef8mflpNceHo4XH")?;

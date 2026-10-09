@@ -30,9 +30,9 @@ pub enum AmpleMode {
 /// that division exactly as the reference does. When `faults` is given it is used directly.
 ///
 /// ```
-/// use signify_keri::event::witness::{AmpleMode, ample};
+/// use keri_protocol::event::witness::{AmpleMode, ample};
 ///
-/// # fn main() -> Result<(), signify_keri::event::EventError> {
+/// # fn main() -> Result<(), keri_protocol::event::EventError> {
 /// // Four witnesses tolerate one fault, so three receipts suffice.
 /// assert_eq!(ample(4, None, AmpleMode::Weak)?, 3);
 /// // Six is the smallest count where the two majorities disagree.

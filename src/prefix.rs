@@ -159,8 +159,8 @@ impl BasicPrefix {
 /// One autonomic identifier prefix.
 ///
 /// ```
-/// use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
-/// use signify_keri::serialization::{Sad, SadValue};
+/// use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
+/// use keri_protocol::serialization::{Sad, SadValue};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let mut inception = Sad::new();

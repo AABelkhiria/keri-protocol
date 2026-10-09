@@ -38,7 +38,7 @@ pub const DUMMY_CHARACTER: char = '#';
 /// One self-addressing identifier: a digest computed over a message that carries it.
 ///
 /// ```
-/// use signify_keri::{
+/// use keri_protocol::{
 ///     said::{DEFAULT_SAID_LABEL, Said, SaidVerification},
 ///     serialization::{Sad, SadValue},
 /// };

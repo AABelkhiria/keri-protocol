@@ -2,10 +2,10 @@
 
 use std::error::Error;
 
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixError, PrefixVerification};
+use keri_protocol::said::DUMMY_CHARACTER;
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use serde::Deserialize;
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixError, PrefixVerification};
-use signify_keri::said::DUMMY_CHARACTER;
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -121,7 +121,7 @@ struct MutationQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-prefix/v1.json"
+        "/fixtures/keri-prefix/v1.json"
     )))?)
 }
 

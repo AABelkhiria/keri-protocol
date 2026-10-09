@@ -1,12 +1,12 @@
 //! Property and invalid-near-miss coverage for reply messages and their timestamps.
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
+use keri_protocol::event::EventError;
+use keri_protocol::event::reply::{MAX_ROUTE_BYTES, ReplyBuilder};
+use keri_protocol::event::timestamp::Timestamp;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::event::EventError;
-use signify_keri::event::reply::{MAX_ROUTE_BYTES, ReplyBuilder};
-use signify_keri::event::timestamp::Timestamp;
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 fn fail<T, E: core::fmt::Display>(result: Result<T, E>) -> Result<T, TestCaseError> {
     result.map_err(|error| TestCaseError::fail(error.to_string()))

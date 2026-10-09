@@ -4,13 +4,13 @@ use std::error::Error;
 
 use keri_cesr::crypto::signature::IndexedSignature;
 use keri_cesr::sequence::SequenceNumber;
-use serde::Deserialize;
-use signify_keri::attachment::{
+use keri_protocol::attachment::{
     AttachmentError, AttachmentFraming, SealSourceCouple, SealSourceTriple, SignatureSeal, SignedMessageBuilder,
 };
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::Said;
-use signify_keri::serialization::SerializedEvent;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::Said;
+use keri_protocol::serialization::SerializedEvent;
+use serde::Deserialize;
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -122,7 +122,7 @@ struct SealTagQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-attachment/v1.json"
+        "/fixtures/keri-attachment/v1.json"
     )))?)
 }
 

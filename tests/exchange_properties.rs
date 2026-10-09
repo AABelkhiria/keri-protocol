@@ -1,14 +1,14 @@
 //! Property and invalid-near-miss coverage for exchange messages.
 
-use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::event::EventError;
-use signify_keri::event::exchange::{
+use keri_protocol::event::EventError;
+use keri_protocol::event::exchange::{
     EMBEDS_LABEL, ExchangeBuilder, ExchangeEmbed, ExchangeMessage, MAX_EMBED_LABEL_BYTES,
 };
-use signify_keri::event::timestamp::Timestamp;
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
+use keri_protocol::event::timestamp::Timestamp;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
+use proptest::{prelude::*, test_runner::TestCaseError};
 
 const SENDER: &str = "EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL";
 const RECIPIENT: &str = "EAKUR-LmLHWMwXTLWQ1QjxHrihBmwwrV2tYaSG7hOrWj";

@@ -26,7 +26,7 @@ pub const MAX_WEIGHT_TEXT_BYTES: usize = 79;
 /// whitespace are rejected.
 ///
 /// ```
-/// use signify_keri::threshold::RationalWeight;
+/// use keri_protocol::threshold::RationalWeight;
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let half = RationalWeight::parse("0.5")?;
@@ -84,7 +84,7 @@ pub struct WeightClause {
 /// rational values. Numeric thresholds retain the full exact CESR `u128` range.
 ///
 /// ```
-/// use signify_keri::threshold::{RationalWeight, SigningThreshold};
+/// use keri_protocol::threshold::{RationalWeight, SigningThreshold};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let threshold = SigningThreshold::weighted(vec![vec![

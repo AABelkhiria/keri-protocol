@@ -208,10 +208,10 @@ impl ExchangeMessage {
 /// Builds an exchange (`exn`) message.
 ///
 /// ```
-/// use signify_keri::event::exchange::ExchangeBuilder;
-/// use signify_keri::event::timestamp::Timestamp;
-/// use signify_keri::prefix::IdentifierPrefix;
-/// use signify_keri::serialization::{Sad, SadValue};
+/// use keri_protocol::event::exchange::ExchangeBuilder;
+/// use keri_protocol::event::timestamp::Timestamp;
+/// use keri_protocol::prefix::IdentifierPrefix;
+/// use keri_protocol::serialization::{Sad, SadValue};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let sender = IdentifierPrefix::from_qb64("EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL")?;

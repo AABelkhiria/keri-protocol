@@ -8,8 +8,8 @@
 use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
-use signify_keri::serialization::Sad;
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixVerification};
+use keri_protocol::serialization::Sad;
 
 /// The 299-byte inception event from the `Prefixer` assertions in `test/core/serder.test.ts`.
 const INCEPTION_EVENT: &str = concat!(
@@ -26,7 +26,7 @@ fn with_field(sad: &Sad, label: &str, value: &str) -> Option<Sad> {
     let mut rebuilt = Sad::new();
     for (existing, existing_value) in sad.entries() {
         let replacement = if existing == label {
-            signify_keri::serialization::SadValue::text(value)
+            keri_protocol::serialization::SadValue::text(value)
         } else {
             existing_value.clone()
         };

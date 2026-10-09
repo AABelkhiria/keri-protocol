@@ -4,15 +4,15 @@ use std::error::Error;
 
 use keri_cesr::crypto::digest::Digest;
 use keri_cesr::crypto::verifier::VerificationKey;
+use keri_protocol::event::inception::InceptionBuilder;
+use keri_protocol::event::interaction::InteractionBuilder;
+use keri_protocol::event::rotation::{RotationBuilder, RotationKind};
+use keri_protocol::event::witness::{AmpleMode, ample};
+use keri_protocol::event::{ConfigurationTrait, EventError, KeyEvent, ThresholdEncoding};
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation};
+use keri_protocol::serialization::{Sad, SadValue};
+use keri_protocol::threshold::{RationalWeight, SigningThreshold};
 use serde::Deserialize;
-use signify_keri::event::inception::InceptionBuilder;
-use signify_keri::event::interaction::InteractionBuilder;
-use signify_keri::event::rotation::{RotationBuilder, RotationKind};
-use signify_keri::event::witness::{AmpleMode, ample};
-use signify_keri::event::{ConfigurationTrait, EventError, KeyEvent, ThresholdEncoding};
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation};
-use signify_keri::serialization::{Sad, SadValue};
-use signify_keri::threshold::{RationalWeight, SigningThreshold};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -171,7 +171,7 @@ struct OmittedFieldQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-eventing/v1.json"
+        "/fixtures/keri-eventing/v1.json"
     )))?)
 }
 

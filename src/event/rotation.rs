@@ -58,9 +58,9 @@ impl RotationKind {
 ///
 /// ```
 /// use keri_cesr::crypto::verifier::VerificationKey;
-/// use signify_keri::event::rotation::RotationBuilder;
-/// use signify_keri::prefix::IdentifierPrefix;
-/// use signify_keri::said::Said;
+/// use keri_protocol::event::rotation::RotationBuilder;
+/// use keri_protocol::prefix::IdentifierPrefix;
+/// use keri_protocol::said::Said;
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let identifier = IdentifierPrefix::from_qb64("EAKCxMOuoRzREVHsHCkLilBrUXTvyenBiuM2QtV8BB0C")?;

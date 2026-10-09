@@ -76,9 +76,9 @@ impl ReplyMessage {
 /// Builds a reply (`rpy`) message.
 ///
 /// ```
-/// use signify_keri::event::reply::ReplyBuilder;
-/// use signify_keri::event::timestamp::Timestamp;
-/// use signify_keri::serialization::{Sad, SadValue};
+/// use keri_protocol::event::reply::ReplyBuilder;
+/// use keri_protocol::event::timestamp::Timestamp;
+/// use keri_protocol::serialization::{Sad, SadValue};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let mut attributes = Sad::new();

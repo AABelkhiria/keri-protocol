@@ -4,10 +4,10 @@
 //! implementation. That guards the escaping and structure rules without giving `serde_json` any
 //! authority over field order or byte layout, which it does not preserve.
 
-use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::serialization::{
+use keri_protocol::serialization::{
     MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, Sad, SadError, SadValue, SerializationError, SerializedEvent,
 };
+use proptest::{prelude::*, test_runner::TestCaseError};
 
 fn sad_value<T>(result: Result<T, SadError>) -> Result<T, TestCaseError> {
     result.map_err(|error| TestCaseError::fail(error.to_string()))

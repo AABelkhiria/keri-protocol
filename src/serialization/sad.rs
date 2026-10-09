@@ -131,9 +131,9 @@ impl From<Sad> for SadValue {
 /// artifact rather than protocol order, so it is deliberately not reproduced. See the ADR.
 ///
 /// ```
-/// use signify_keri::serialization::{Sad, SadValue};
+/// use keri_protocol::serialization::{Sad, SadValue};
 ///
-/// # fn main() -> Result<(), signify_keri::serialization::SadError> {
+/// # fn main() -> Result<(), keri_protocol::serialization::SadError> {
 /// let mut sad = Sad::new();
 /// sad.insert("v", SadValue::text("KERI10JSON000000_"))?;
 /// sad.insert("t", SadValue::text("icp"))?;

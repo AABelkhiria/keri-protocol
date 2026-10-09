@@ -2,11 +2,11 @@
 
 use std::error::Error;
 
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::event::reply::ReplyBuilder;
+use keri_protocol::event::timestamp::{Timestamp, TimestampError};
+use keri_protocol::serialization::{Sad, SadValue};
 use serde::Deserialize;
-use signify_keri::event::kind::EventKind;
-use signify_keri::event::reply::ReplyBuilder;
-use signify_keri::event::timestamp::{Timestamp, TimestampError};
-use signify_keri::serialization::{Sad, SadValue};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -86,7 +86,7 @@ struct UnreachableCheckQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-reply/v1.json"
+        "/fixtures/keri-reply/v1.json"
     )))?)
 }
 

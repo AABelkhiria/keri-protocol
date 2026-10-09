@@ -21,10 +21,10 @@ use keri_cesr::crypto::digest::DigestAlgorithm;
 /// Builds an interaction (`ixn`) event.
 ///
 /// ```
-/// use signify_keri::event::interaction::InteractionBuilder;
-/// use signify_keri::prefix::IdentifierPrefix;
-/// use signify_keri::said::Said;
-/// use signify_keri::serialization::{Sad, SadValue};
+/// use keri_protocol::event::interaction::InteractionBuilder;
+/// use keri_protocol::prefix::IdentifierPrefix;
+/// use keri_protocol::said::Said;
+/// use keri_protocol::serialization::{Sad, SadValue};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let identifier = IdentifierPrefix::from_qb64("EAKCxMOuoRzREVHsHCkLilBrUXTvyenBiuM2QtV8BB0C")?;

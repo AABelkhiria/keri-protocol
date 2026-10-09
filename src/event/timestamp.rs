@@ -25,9 +25,9 @@ const TIMESTAMP_LENGTH: usize = 32;
 /// `000+00:00`, so the fractional part is always six digits and the offset always explicit.
 ///
 /// ```
-/// use signify_keri::event::timestamp::Timestamp;
+/// use keri_protocol::event::timestamp::Timestamp;
 ///
-/// # fn main() -> Result<(), signify_keri::event::timestamp::TimestampError> {
+/// # fn main() -> Result<(), keri_protocol::event::timestamp::TimestampError> {
 /// let stamp: Timestamp = "2021-06-27T21:26:21.233257+00:00".parse()?;
 /// assert_eq!(stamp.as_str(), "2021-06-27T21:26:21.233257+00:00");
 ///

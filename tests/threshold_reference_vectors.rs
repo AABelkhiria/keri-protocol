@@ -2,9 +2,9 @@
 
 use std::error::Error;
 
+use keri_protocol::threshold::{RationalWeight, RationalWeightError, SigningThreshold, ThresholdError};
 use serde::Deserialize;
 use serde_json::Value;
-use signify_keri::threshold::{RationalWeight, RationalWeightError, SigningThreshold, ThresholdError};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -93,7 +93,7 @@ struct IndexQuirk {
 fn fixture() -> Result<Fixture, serde_json::Error> {
     serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-threshold/v1.json"
+        "/fixtures/keri-threshold/v1.json"
     )))
 }
 

@@ -2,8 +2,8 @@
 
 use std::error::Error;
 
+use keri_protocol::serialization::{Sad, SadError, SerializationError, SerializedEvent};
 use serde::Deserialize;
-use signify_keri::serialization::{Sad, SadError, SerializationError, SerializedEvent};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -116,7 +116,7 @@ struct NumberQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-serder/v1.json"
+        "/fixtures/keri-serder/v1.json"
     )))?)
 }
 
@@ -291,10 +291,10 @@ fn reference_quirks_are_pinned_and_safely_diverged() -> Result<(), Box<dyn Error
     // do is re-order fields that arrive in protocol order.
     assert_eq!(sad.to_json_bytes()?, numeric.reference_raw.as_bytes());
     let mut protocol_order = Sad::new();
-    protocol_order.insert("v", signify_keri::serialization::SadValue::text("KERI10JSON000000_"))?;
-    protocol_order.insert("b", signify_keri::serialization::SadValue::Integer(1))?;
-    protocol_order.insert("1", signify_keri::serialization::SadValue::Integer(2))?;
-    protocol_order.insert("0", signify_keri::serialization::SadValue::Integer(3))?;
+    protocol_order.insert("v", keri_protocol::serialization::SadValue::text("KERI10JSON000000_"))?;
+    protocol_order.insert("b", keri_protocol::serialization::SadValue::Integer(1))?;
+    protocol_order.insert("1", keri_protocol::serialization::SadValue::Integer(2))?;
+    protocol_order.insert("0", keri_protocol::serialization::SadValue::Integer(3))?;
     assert_eq!(protocol_order.to_json_bytes()?, numeric.rust_raw.as_bytes());
 
     // 3. Duplicate labels are ambiguous; the reference silently keeps the last value.

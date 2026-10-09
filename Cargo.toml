@@ -1,22 +1,21 @@
 [package]
-name = "signify-keri"
+name = "keri-protocol"
 version = "0.0.0"
-description = "KERI event construction and key-state logic for Signify"
-edition.workspace = true
-rust-version.workspace = true
-publish.workspace = true
-keywords.workspace = true
-categories.workspace = true
+description = "KERI protocol messages: events, SAIDs, prefixes, thresholds and CESR attachments"
+edition = "2024"
+rust-version = "1.97"
+publish = false
+keywords = ["keri", "kel", "tel", "cesr", "identity"]
+categories = ["cryptography", "encoding"]
 
 [dependencies]
-serde_json.workspace = true
-keri-cesr.workspace = true
-keria-types.workspace = true
+keri-cesr = { version = "0.1.0", features = ["crypto"] }
+serde_json = { version = "1.0.151", default-features = false, features = ["std"] }
 
 [dev-dependencies]
-criterion.workspace = true
-proptest.workspace = true
-serde.workspace = true
+criterion = { version = "0.8.2", default-features = false, features = ["cargo_bench_support"] }
+proptest = { version = "1.11.0", default-features = false, features = ["std"] }
+serde = { version = "=1.0.228", features = ["derive"] }
 
 [[bench]]
 name = "threshold"
@@ -43,24 +42,26 @@ name = "eventing"
 harness = false
 
 [[bench]]
-name = "manager"
-harness = false
-
-[[bench]]
-name = "habery"
-harness = false
-
-[[bench]]
-name = "controller"
-harness = false
-
-[[bench]]
-name = "aiding"
-harness = false
-
-[[bench]]
 name = "registry"
 harness = false
 
-[lints]
-workspace = true
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+unreachable_pub = "warn"
+unused_must_use = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+cargo = { level = "deny", priority = -1 }
+allow_attributes = "deny"
+dbg_macro = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+panic = "deny"
+print_stderr = "deny"
+print_stdout = "deny"
+todo = "deny"
+unimplemented = "deny"
+unwrap_used = "deny"

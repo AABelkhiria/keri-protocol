@@ -8,8 +8,8 @@ use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
 use keri_cesr::crypto::digest::DigestAlgorithm;
-use signify_keri::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
-use signify_keri::serialization::Sad;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
+use keri_protocol::serialization::Sad;
 
 /// The 292-byte `rep` message from the pinned `test/core/saider.test.ts`, before derivation.
 const REP_MESSAGE: &str = concat!(

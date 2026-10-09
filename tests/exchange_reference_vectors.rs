@@ -2,13 +2,13 @@
 
 use std::error::Error;
 
+use keri_protocol::event::EventError;
+use keri_protocol::event::exchange::{ExchangeBuilder, ExchangeEmbed, ExchangeMessage};
+use keri_protocol::event::timestamp::Timestamp;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::Said;
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use serde::Deserialize;
-use signify_keri::event::EventError;
-use signify_keri::event::exchange::{ExchangeBuilder, ExchangeEmbed, ExchangeMessage};
-use signify_keri::event::timestamp::Timestamp;
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::Said;
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -177,7 +177,7 @@ struct LooseArgumentsQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-exchange/v1.json"
+        "/fixtures/keri-exchange/v1.json"
     )))?)
 }
 

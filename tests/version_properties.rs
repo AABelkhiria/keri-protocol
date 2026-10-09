@@ -2,11 +2,11 @@
 
 use std::str::FromStr;
 
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionString};
 use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::event::kind::EventKind;
-use signify_keri::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionString};
 
-fn version_value<T>(result: Result<T, signify_keri::serialization::VersionError>) -> Result<T, TestCaseError> {
+fn version_value<T>(result: Result<T, keri_protocol::serialization::VersionError>) -> Result<T, TestCaseError> {
     result.map_err(|error| TestCaseError::fail(error.to_string()))
 }
 

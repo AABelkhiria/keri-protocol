@@ -3,7 +3,7 @@
 use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use signify_keri::threshold::SigningThreshold;
+use keri_protocol::threshold::SigningThreshold;
 
 fn benchmark_threshold(criterion: &mut Criterion) {
     criterion.bench_function("threshold_parse_numeric", |bencher| {

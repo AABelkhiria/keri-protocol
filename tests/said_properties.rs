@@ -1,9 +1,9 @@
 //! Property and invalid-near-miss coverage for self-addressing identifiers.
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
+use keri_protocol::said::{DEFAULT_SAID_LABEL, DUMMY_CHARACTER, Said, SaidError, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::said::{DEFAULT_SAID_LABEL, DUMMY_CHARACTER, Said, SaidError, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 fn said_value<T>(result: Result<T, SaidError>) -> Result<T, TestCaseError> {
     result.map_err(|error| TestCaseError::fail(error.to_string()))

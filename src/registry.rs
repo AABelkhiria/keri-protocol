@@ -153,8 +153,8 @@ impl From<EventError> for RegistryError {
 /// fields.
 ///
 /// ```
-/// use signify_keri::prefix::IdentifierPrefix;
-/// use signify_keri::registry::RegistryInceptionBuilder;
+/// use keri_protocol::prefix::IdentifierPrefix;
+/// use keri_protocol::registry::RegistryInceptionBuilder;
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let issuer = IdentifierPrefix::from_qb64("ECJIoBpEcCWMzvquk861dXP8JJZ-vbmJczlDR-NYcE3g")?;

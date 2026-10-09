@@ -14,9 +14,9 @@ use std::str::FromStr;
 /// Source: the `Ilks` constant of the pinned `src/keri/core/core.ts`, in table order.
 ///
 /// ```
-/// use signify_keri::event::kind::EventKind;
+/// use keri_protocol::event::kind::EventKind;
 ///
-/// # fn main() -> Result<(), signify_keri::event::kind::EventKindError> {
+/// # fn main() -> Result<(), keri_protocol::event::kind::EventKindError> {
 /// assert_eq!(EventKind::Inception.as_str(), "icp");
 /// assert_eq!("rot".parse::<EventKind>()?, EventKind::Rotation);
 /// # Ok(())

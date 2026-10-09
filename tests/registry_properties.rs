@@ -1,11 +1,11 @@
 //! Invariants of registry inception.
 
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::event::witness::{AmpleMode, ample};
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::registry::{RegistryError, RegistryInceptionBuilder};
+use keri_protocol::serialization::SerializedEvent;
 use proptest::prelude::*;
-use signify_keri::event::kind::EventKind;
-use signify_keri::event::witness::{AmpleMode, ample};
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::registry::{RegistryError, RegistryInceptionBuilder};
-use signify_keri::serialization::SerializedEvent;
 
 const ISSUER: &str = "ECJIoBpEcCWMzvquk861dXP8JJZ-vbmJczlDR-NYcE3g";
 

@@ -3,14 +3,14 @@
 use keri_cesr::crypto::signature::{IndexedSignature, UnindexedSignature};
 use keri_cesr::crypto::verifier::VerificationKey;
 use keri_cesr::sequence::SequenceNumber;
-use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::attachment::{
+use keri_protocol::attachment::{
     AttachmentError, AttachmentFraming, ReceiptCouple, SealSourceCouple, SealSourceTriple, SignatureSeal,
     SignedMessageBuilder,
 };
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::Said;
-use signify_keri::serialization::SerializedEvent;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::Said;
+use keri_protocol::serialization::SerializedEvent;
+use proptest::{prelude::*, test_runner::TestCaseError};
 
 const EVENT: &str = concat!(
     r#"{"v":"KERI10JSON000125_","t":"icp","d":"EIflL4H4134zYoRM6ls6Q086RLC_BhfNFh5uk-WxvhsL","#,

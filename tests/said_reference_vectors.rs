@@ -3,9 +3,9 @@
 use std::error::Error;
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
+use keri_protocol::said::{DUMMY_CHARACTER, Said, SaidError, SaidVerification};
+use keri_protocol::serialization::{Sad, SadValue};
 use serde::Deserialize;
-use signify_keri::said::{DUMMY_CHARACTER, Said, SaidError, SaidVerification};
-use signify_keri::serialization::{Sad, SadValue};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -90,7 +90,7 @@ struct AppendQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-said/v1.json"
+        "/fixtures/keri-said/v1.json"
     )))?)
 }
 
@@ -148,7 +148,7 @@ fn fixture_metadata_matches_the_pinned_reference() -> Result<(), Box<dyn Error>>
     assert_ne!(fixture.generated_on, "");
     assert_eq!(fixture.sources, ["src/keri/core/saider.ts", "test/core/saider.test.ts"]);
     assert_eq!(fixture.dummy_character, DUMMY_CHARACTER.to_string());
-    assert_eq!(fixture.default_label, signify_keri::said::DEFAULT_SAID_LABEL);
+    assert_eq!(fixture.default_label, keri_protocol::said::DEFAULT_SAID_LABEL);
     Ok(())
 }
 
@@ -213,7 +213,7 @@ fn the_hashed_preimage_matches_byte_for_byte() -> Result<(), Box<dyn Error>> {
         let dummied = with_field(&sad, &case.label, &SadValue::text(placeholder))?;
 
         let preimage = if dummied.contains("v") {
-            signify_keri::serialization::SerializedEvent::from_sad(dummied)?
+            keri_protocol::serialization::SerializedEvent::from_sad(dummied)?
                 .raw()
                 .to_vec()
         } else {

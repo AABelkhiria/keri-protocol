@@ -140,7 +140,7 @@ impl TryFrom<&str> for SerializationKind {
 /// Fields are private, so an unvalidated value cannot be built outside this module:
 ///
 /// ```compile_fail
-/// let bogus = signify_keri::serialization::ProtocolVersion { major: 99, minor: 0 };
+/// let bogus = keri_protocol::serialization::ProtocolVersion { major: 99, minor: 0 };
 /// ```
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 pub struct ProtocolVersion {
@@ -205,11 +205,11 @@ impl fmt::Display for ProtocolVersion {
 /// lowercase hexadecimal size digits, and the version 1 `_` terminator.
 ///
 /// ```
-/// use signify_keri::serialization::{
+/// use keri_protocol::serialization::{
 ///     Protocol, ProtocolVersion, SerializationKind, VersionString,
 /// };
 ///
-/// # fn main() -> Result<(), signify_keri::serialization::VersionError> {
+/// # fn main() -> Result<(), keri_protocol::serialization::VersionError> {
 /// let version = VersionString::new(
 ///     Protocol::Keri,
 ///     ProtocolVersion::V1_0,

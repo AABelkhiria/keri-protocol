@@ -5,9 +5,9 @@ use std::collections::BTreeMap;
 use std::error::Error;
 use std::str::FromStr;
 
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionError, VersionString};
 use serde::Deserialize;
-use signify_keri::event::kind::EventKind;
-use signify_keri::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionError, VersionString};
 
 const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
@@ -141,7 +141,7 @@ struct MajorEmissionQuirk {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-version/v1.json"
+        "/fixtures/keri-version/v1.json"
     )))?)
 }
 

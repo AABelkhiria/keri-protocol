@@ -9,13 +9,13 @@ use std::error::Error;
 use keri_cesr::crypto::signature::{IndexedSignature, UnindexedSignature};
 use keri_cesr::crypto::verifier::VerificationKey;
 use keri_cesr::sequence::SequenceNumber;
-use serde::Deserialize;
-use signify_keri::attachment::{
+use keri_protocol::attachment::{
     AttachmentError, AttachmentFraming, ReceiptCouple, SignatureSeal, SignedMessageBuilder,
 };
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::said::Said;
-use signify_keri::serialization::SerializedEvent;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::said::Said;
+use keri_protocol::serialization::SerializedEvent;
+use serde::Deserialize;
 
 const REFERENCE_SHA: &str = "4ce4cc79e06653f77342be1bf604086b89b1f090";
 
@@ -77,7 +77,7 @@ struct ReferenceFacts {
 fn fixture() -> Result<Fixture, Box<dyn Error>> {
     Ok(serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../fixtures/keri-attachment-keripy/v1.json"
+        "/fixtures/keri-attachment-keripy/v1.json"
     )))?)
 }
 

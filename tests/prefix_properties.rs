@@ -1,9 +1,9 @@
 //! Property and invalid-near-miss coverage for identifier prefixes.
 
+use keri_protocol::prefix::{IdentifierPrefix, PrefixDerivation, PrefixError, PrefixVerification};
+use keri_protocol::said::DUMMY_CHARACTER;
+use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 use proptest::{prelude::*, test_runner::TestCaseError};
-use signify_keri::prefix::{IdentifierPrefix, PrefixDerivation, PrefixError, PrefixVerification};
-use signify_keri::said::DUMMY_CHARACTER;
-use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
 
 /// A transferable Ed25519 key, its non-transferable form, and a second unrelated key.
 const TRANSFERABLE_KEY: &str = "DKxy2sgzfplyr-tgwIxS19f2OchFHtLwPWD3v4oYimBx";

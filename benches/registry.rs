@@ -7,8 +7,8 @@
 use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use signify_keri::prefix::IdentifierPrefix;
-use signify_keri::registry::RegistryInceptionBuilder;
+use keri_protocol::prefix::IdentifierPrefix;
+use keri_protocol::registry::RegistryInceptionBuilder;
 
 const ISSUER: &str = "ECJIoBpEcCWMzvquk861dXP8JJZ-vbmJczlDR-NYcE3g";
 const NONCE: &str = "AHSNDV3ABI6U8OIgKaj3aky91ZpNL54I5_7-qwtC6q2s";

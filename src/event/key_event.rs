@@ -169,7 +169,12 @@ pub(crate) fn integer_threshold(threshold: &SigningThreshold) -> Result<Option<S
 }
 
 /// Rejects a signing threshold that no set of the listed keys could ever satisfy.
-pub(crate) fn check_signing_threshold(threshold: &SigningThreshold, keys: usize) -> Result<(), EventError> {
+///
+/// # Errors
+///
+/// [`EventError::SigningThresholdIsZero`] for a zero threshold, and
+/// [`EventError::SigningThresholdExceedsKeys`] when the threshold needs more keys than are listed.
+pub fn check_signing_threshold(threshold: &SigningThreshold, keys: usize) -> Result<(), EventError> {
     if threshold.numeric_value() == Some(0) {
         return Err(EventError::SigningThresholdIsZero);
     }
@@ -188,7 +193,11 @@ pub(crate) fn check_signing_threshold(threshold: &SigningThreshold, keys: usize)
 /// A zero threshold is allowed here and means the identifier is being abandoned: no rotation will
 /// ever be accepted. The reference compares this threshold against the *current* key count instead
 /// of the digest count, which is a defect recorded in `PORTING.md` §9.
-pub(crate) fn check_next_threshold(threshold: &SigningThreshold, digests: usize) -> Result<(), EventError> {
+///
+/// # Errors
+///
+/// [`EventError::NextThresholdExceedsDigests`] when the threshold needs more digests than are listed.
+pub fn check_next_threshold(threshold: &SigningThreshold, digests: usize) -> Result<(), EventError> {
     let available = u128::try_from(digests).map_err(|_| EventError::ValueOutOfRange {
         context: "next-key digest count",
     })?;
@@ -257,7 +266,15 @@ pub(crate) fn sequence_value(sequence_number: u128) -> SadValue {
 }
 
 /// Rejects a witness list holding the same identifier twice.
-pub(crate) fn check_distinct(prefixes: &[IdentifierPrefix], label: &'static str) -> Result<Vec<String>, EventError> {
+///
+/// Returns the prefixes as qualified Base64, in order, for the caller to write into the event under
+/// `label`.
+///
+/// # Errors
+///
+/// [`EventError::DuplicateWitness`] naming `label` when a prefix repeats, or the prefix error when one
+/// cannot be encoded.
+pub fn check_distinct(prefixes: &[IdentifierPrefix], label: &'static str) -> Result<Vec<String>, EventError> {
     let mut seen = Vec::with_capacity(prefixes.len());
     for prefix in prefixes {
         let qb64 = prefix.qb64().map_err(EventError::prefix)?;
@@ -270,7 +287,14 @@ pub(crate) fn check_distinct(prefixes: &[IdentifierPrefix], label: &'static str)
 }
 
 /// Rejects a witness threshold that the resulting witness set could never meet.
-pub(crate) fn check_witness_threshold(threshold: u32, witnesses: usize) -> Result<(), EventError> {
+///
+/// With no witnesses only zero fits; otherwise the threshold must lie between one and the witness
+/// count.
+///
+/// # Errors
+///
+/// [`EventError::InvalidWitnessThreshold`] when it does not fit.
+pub fn check_witness_threshold(threshold: u32, witnesses: usize) -> Result<(), EventError> {
     let fits = if witnesses == 0 {
         threshold == 0
     } else {

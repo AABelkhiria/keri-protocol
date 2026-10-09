@@ -38,7 +38,7 @@ pub const NEXT_KEYS_LABEL: &str = "n";
 /// hashed elsewhere cannot be silently reshaped here.
 ///
 /// ```
-/// use signify_keri::serialization::{Sad, SadValue, SerializedEvent};
+/// use keri_protocol::serialization::{Sad, SadValue, SerializedEvent};
 ///
 /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
 /// let mut sad = Sad::new();

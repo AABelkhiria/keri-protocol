@@ -8,8 +8,8 @@ use std::hint::black_box;
 use std::str::FromStr;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use signify_keri::event::kind::EventKind;
-use signify_keri::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionString};
+use keri_protocol::event::kind::EventKind;
+use keri_protocol::serialization::{Protocol, ProtocolVersion, SerializationKind, VersionString};
 
 fn benchmark_version(criterion: &mut Criterion) {
     criterion.bench_function("version_string_parse_17_bytes", |bencher| {

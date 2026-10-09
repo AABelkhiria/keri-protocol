@@ -7,7 +7,7 @@
 use std::hint::black_box;
 
 use criterion::{Criterion, criterion_group, criterion_main};
-use signify_keri::serialization::{Sad, SerializedEvent};
+use keri_protocol::serialization::{Sad, SerializedEvent};
 
 /// The 211-byte inception event asserted by the pinned `test/core/serder.test.ts`.
 const INCEPTION: &str = concat!(
