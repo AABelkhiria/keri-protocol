@@ -2,7 +2,7 @@
 
 - Fixture schema: `v1`
 - Upstream: `https://github.com/WebOfTrust/signify-ts.git`
-- Commit: `ae92eceb8e776ad57669707bff7f84db9390b711`
+- Commit: `91a04a5edd804425f42be75ffbf034f8d14e5cb2`
 - Generated: 2026-08-18
 - Sources: `src/keri/core/core.ts`, `test/core/serder.test.ts`
 - Binary fields: none; every value is UTF-8 text, a decimal integer, or a lowercase hexadecimal

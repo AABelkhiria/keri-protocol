@@ -7,7 +7,7 @@ use keri_protocol::said::{DUMMY_CHARACTER, Said, SaidError, SaidVerification};
 use keri_protocol::serialization::{Sad, SadValue};
 use serde::Deserialize;
 
-const REFERENCE_SHA: &str = "ae92eceb8e776ad57669707bff7f84db9390b711";
+const REFERENCE_SHA: &str = "91a04a5edd804425f42be75ffbf034f8d14e5cb2";
 
 #[derive(Debug, Deserialize)]
 struct Fixture {

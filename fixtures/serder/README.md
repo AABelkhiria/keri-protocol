@@ -2,7 +2,7 @@
 
 - Fixture schema: `v1`
 - Upstream: `https://github.com/WebOfTrust/signify-ts.git`
-- Commit: `ae92eceb8e776ad57669707bff7f84db9390b711`
+- Commit: `91a04a5edd804425f42be75ffbf034f8d14e5cb2`
 - Generated: 2026-08-18
 - Sources: `src/keri/core/serder.ts`, `test/core/serder.test.ts`
 - Binary fields: `raw_hex` is the lowercase hexadecimal UTF-8 encoding of the reference's exact
