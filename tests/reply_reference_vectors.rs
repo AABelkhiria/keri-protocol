@@ -128,7 +128,8 @@ fn the_reference_exports_only_one_supporting_builder() -> Result<(), Box<dyn Err
         fixture.exported_builders,
         ["ample", "incept", "interact", "messagize", "reply", "rotate"]
     );
-    // Roadmap 3.5 ported four of these and `messagize` is Roadmap 3.7, leaving `reply` alone here.
+    // Four of these are key-event builders and `messagize` is attachment composition, leaving
+    // `reply` alone here.
     for absent in ["receipt", "query", "state", "keyState", "ksn"] {
         assert!(
             !fixture.exported_builders.iter().any(|name| name == absent),
@@ -140,7 +141,7 @@ fn the_reference_exports_only_one_supporting_builder() -> Result<(), Box<dyn Err
     assert!(fixture.ilks.iter().any(|ilk| ilk == "rct"));
     assert!(fixture.ilks.iter().any(|ilk| ilk == "vrc"));
     assert!(!fixture.ilks.iter().any(|ilk| ilk == "qry"));
-    // Rust's own table agrees, since both were ported in Roadmap 3.1.
+    // Rust's own table agrees.
     let rust: Vec<&str> = EventKind::ALL.iter().map(|kind| kind.as_str()).collect();
     for ilk in &fixture.ilks {
         assert!(rust.contains(&ilk.as_str()), "Rust is missing ilk {ilk}");

@@ -48,10 +48,9 @@ other two combinations are expressible too.
   always attaches one. The fixture records all three attempts throwing, **including the one with a
   genuinely non-transferable key**. Both paths also write `ControllerIdxSigs` rather than the
   witness or receipt-couple counter, so anything that did get through would be misparsed by a peer
-  as controller signatures. Witness-signature and non-transferable-receipt-couple groups were
-  therefore initially recorded `BLOCKED` in `PORTING.md`: with no reachable reference behavior
-  there was nothing to verify a Rust encoding against. **Resolved 2026-08-19**: both group kinds
-  are now verified against the pinned keripy reference instead — see ADR 0009 and
+  as controller signatures. With no reachable reference behavior there was
+  nothing to verify a Rust encoding of witness-signature and non-transferable-receipt-couple groups
+  against, so both group kinds are verified against the pinned keripy reference instead; see
   `fixtures/attachment-keripy/`.
 - **Seal sequence numbers are read as decimal.** The seal's `s` field is parsed with `parseInt`,
   but KERI sequence numbers are hexadecimal. The fixture records the consequences: hex `a` — ten —

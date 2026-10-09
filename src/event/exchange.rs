@@ -13,8 +13,8 @@
 //! stream — which the sender concatenates after its own signatures.
 //!
 //! This module ports the pure `exchange(...)` function of `src/keri/app/exchanging.ts`. The
-//! `Exchanges` class around it is transport, and belongs to Roadmap 7.7; the typed route table is
-//! Roadmap 8.1.
+//! `Exchanges` class around it is transport, and the typed route table belongs to the client;
+//! neither lives here.
 
 use keri_cesr::counter::{Counter, CounterCode};
 use keri_cesr::crypto::digest::DigestAlgorithm;
@@ -258,8 +258,8 @@ impl ExchangeBuilder {
     /// defaults the timestamp to the system clock; here they are the validated types the protocol
     /// means, and a caller that wants "now" formats it and parses a [`Timestamp`].
     ///
-    /// The route is a plain string because the typed route table — the multisig and IPEX
-    /// constants — is Roadmap 8.1.
+    /// The route is a plain string; the typed route table — the multisig and IPEX constants —
+    /// belongs to the client.
     #[must_use]
     pub fn new(
         route: impl Into<String>,

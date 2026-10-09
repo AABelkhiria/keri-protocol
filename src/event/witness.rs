@@ -5,7 +5,7 @@
 //! witness set, the smallest count that still tolerates the expected number of faulty witnesses.
 //!
 //! This module ports `ample` from `src/keri/core/eventing.ts`. All arithmetic is exact integer
-//! arithmetic: `AGENTS.md` §2.4 forbids floating point for protocol thresholds, and the reference's
+//! arithmetic, since floating point has no place in a protocol threshold, and the reference's
 //! `Math.ceil`/`Math.floor` results are reproduced with checked integer division.
 
 use crate::event::error::EventError;

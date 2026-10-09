@@ -1,6 +1,6 @@
 //! Protocol identifiers, serialization kinds, protocol versions, and CESR version strings.
 //!
-//! This module ports the Roadmap 3.1 declarations of the pinned reference's
+//! This module ports the declarations of the pinned reference's
 //! `src/keri/core/core.ts`: the `Protocols` and `Serials` enums, the `Version` value with its
 //! `Vrsn_1_0` default, the `VERFULLSIZE` bound, and the `versify`/`deversify` pair. The
 //! stringly-typed reference values become validated Rust types; the version string itself is the

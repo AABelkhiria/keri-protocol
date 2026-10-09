@@ -2,7 +2,7 @@
 
 signify-ts cannot emit witness indexed-signature groups or non-transferable receipt couples --
 its guards are unreachable and its counters are wrong (see fixtures/attachment/README.md) --
-so these two group kinds are verified against keripy instead, per ADR 0009. keripy is pinned in
+so these two group kinds are verified against keripy instead. keripy is pinned in
 ``pyproject.toml`` and ``uv.lock`` beside this file; run from the repository root:
 
     uv sync --locked --project tools/reference-vectors
@@ -165,7 +165,7 @@ def main():
                 " true and the guards are reachable; signify-ts translated the same guard to a"
                 " JavaScript `in`, which tests property keys, so its equivalents can never emit"
                 " and also write the controller counter. keripy is therefore the reference for"
-                " these two group kinds; see ADR 0009."
+                " these two group kinds."
             ),
         },
     }

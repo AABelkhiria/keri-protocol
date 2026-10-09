@@ -92,8 +92,8 @@ more and the reference throws `Invalid count=4096 for code=-L.`; Rust returns
 - **An empty label is accepted.** It produces the path `-e-`, an identity step naming no field.
 - **Numeric labels are hoisted.** JavaScript enumerates array-index-like keys first, so an embeds
   block inserted as `2, 1, a` is written `1, 2, a`; a numeric label is also an ordinal rather than
-  a field in an attachment path. Rust refuses numeric labels, consistent with ADR `0008`'s decision
-  to preserve insertion order.
+  a field in an attachment path. Rust refuses numeric labels, consistent with its decision to
+  preserve insertion order.
 - **A misaligned attachment truncates its count.** The count is `Math.floor(length / 4)`, so a
   three-byte attachment produces a nineteen-character group whose counter covers twelve — the tail
   falls outside the group a parser reads and corrupts whatever follows it. Rust returns

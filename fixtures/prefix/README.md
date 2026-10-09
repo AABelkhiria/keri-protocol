@@ -34,7 +34,7 @@ serialization rather than at the digest.
 - `pinned_serder_test_self_addressing` — the inception data from the `Prefixer` assertions in
   `test/core/serder.test.ts`, with both identifier fields in their normal positions. Its prefix
   `ECHOi6qRaswNpvytpCtpvEh2cB2aLAwVHBLFinno3YVW` is also pinned by `fixtures/serder/v1.json`,
-  where Roadmap 3.2 recorded it without implementing derivation.
+  where it is recorded without derivation.
 - `pinned_serder_test_basic_transferable` — the basic prefix that test also asserts.
 - `basic_non_transferable` — the non-transferable form, whose inception data must carry no next
   keys, backers, or anchors.

@@ -170,7 +170,7 @@ fn fixture_metadata_and_constants_match_the_pinned_reference() -> Result<(), Box
 
     assert_eq!(fixture.constants.verfullsize, VersionString::FULL_SIZE);
     // MINSNIFFSIZE and MINSIGSIZE have no consumer in the pinned reference; they are recorded
-    // here and become Rust constants with their first real consumer (Roadmap 3.2/3.9).
+    // here and become Rust constants with their first real consumer.
     assert_eq!(fixture.constants.minsniffsize, 12 + VersionString::FULL_SIZE);
     assert_eq!(fixture.constants.minsigsize, 4);
     assert!(fixture.constants.verex.starts_with("(KERI|ACDC)"));

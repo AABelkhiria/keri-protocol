@@ -19,7 +19,7 @@ use crate::threshold::SigningThreshold;
 /// only in this encoding have different SAIDs.
 ///
 /// The reference applies it inconsistently, and both inconsistencies are reproduced because they
-/// are observable on the wire (see `PORTING.md` §9):
+/// are observable on the wire:
 ///
 /// - Inception honors it for all three fields; rotation honors it only for `bt`, always writing
 ///   `kt` and `nt` as text.
@@ -192,7 +192,7 @@ pub fn check_signing_threshold(threshold: &SigningThreshold, keys: usize) -> Res
 ///
 /// A zero threshold is allowed here and means the identifier is being abandoned: no rotation will
 /// ever be accepted. The reference compares this threshold against the *current* key count instead
-/// of the digest count, which is a defect recorded in `PORTING.md` §9.
+/// of the digest count, which is its defect.
 ///
 /// # Errors
 ///

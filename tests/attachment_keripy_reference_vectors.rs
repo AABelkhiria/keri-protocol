@@ -2,7 +2,7 @@
 //!
 //! The pinned signify-ts reference cannot emit witness indexed-signature groups or
 //! non-transferable receipt couples, so these two group kinds are verified against keripy
-//! instead. See ADR 0009 and `fixtures/attachment-keripy/README.md`.
+//! instead. See `fixtures/attachment-keripy/README.md`.
 
 use std::error::Error;
 
@@ -320,6 +320,11 @@ fn the_python_guard_is_reachable_where_the_typescript_guard_is_not() -> Result<(
         fixture.reference_facts.non_transferable_codex_values,
         ["B", "1AAA", "1AAC", "1AAI"]
     );
-    assert!(fixture.reference_facts.note.contains("ADR 0009"));
+    assert!(
+        fixture
+            .reference_facts
+            .note
+            .contains("keripy is therefore the reference")
+    );
     Ok(())
 }

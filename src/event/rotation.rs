@@ -134,7 +134,7 @@ impl RotationBuilder {
     ///
     /// Leaving this empty abandons the identifier. The reference cannot express that: its default
     /// next threshold is at least one, and an explicit zero is rejected outright, so no rotation it
-    /// builds can ever be the last one. See `PORTING.md` §9.
+    /// builds can ever be the last one.
     #[must_use]
     pub fn next_key_digests(mut self, digests: Vec<Digest>) -> Self {
         self.next_key_digests = digests;

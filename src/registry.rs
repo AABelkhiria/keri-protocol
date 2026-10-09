@@ -1,8 +1,8 @@
 //! TEL registry inception: the `vcp` event that creates a credential registry.
 //!
 //! This ports the pinned reference's `src/keri/core/vdring.ts`, whose only export is
-//! `vdr.incept`. The issuance and revocation TEL events live in `app/credentialing.ts` and are
-//! Roadmap 6.2; nothing here constructs them.
+//! `vdr.incept`. The issuance and revocation TEL events live in `app/credentialing.ts`; nothing here
+//! constructs them.
 //!
 //! # Backers are text, not identifiers
 //!
@@ -13,9 +13,9 @@
 //!
 //! # The nonce is required
 //!
-//! The reference defaults its nonce to `randomNonce()` from `app/coring.ts`, whose port belongs
-//! to Roadmap 6.4 (`PORTING.md` §5.8). Until then the nonce is a required builder input, exactly
-//! as a reply's timestamp is; the client supplies its own randomness.
+//! The reference defaults its nonce to `randomNonce()` from `app/coring.ts`. Here the nonce is a
+//! required builder input, exactly as a reply's timestamp is: a protocol crate reads no random
+//! source, so the client supplies its own randomness.
 
 use core::fmt;
 use std::collections::BTreeSet;
@@ -180,7 +180,7 @@ impl RegistryInceptionBuilder {
     /// Starts a registry inception for the given issuer and nonce.
     ///
     /// The nonce makes the registry identifier unique per creation; the reference defaults it to
-    /// its own random-nonce helper, whose port is Roadmap 6.4, so it is a required input here.
+    /// its own random-nonce helper, while here it is a required input.
     #[must_use]
     pub fn new(issuer: IdentifierPrefix, nonce: impl Into<String>) -> Self {
         Self {

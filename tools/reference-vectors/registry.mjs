@@ -65,7 +65,7 @@ const randomNonceShape = (() => {
   return {
     length: nonce.length,
     code: nonce.slice(0, 1),
-    note: "the default nonce is randomNonce(): 32 random bytes as qualified Base64 under the seed code; it cannot be pinned, and its Rust equivalent arrives with Roadmap 6.4",
+    note: "the default nonce is randomNonce(): 32 random bytes as qualified Base64 under the seed code; it cannot be pinned, so the Rust builder takes the nonce as an input",
   };
 })();
 

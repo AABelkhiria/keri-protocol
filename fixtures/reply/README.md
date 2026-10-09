@@ -24,12 +24,12 @@ node tools/reference-vectors/reply.mjs --check   # verify determinism
 ample, incept, interact, messagize, reply, rotate
 ```
 
-Roadmap 3.5 ported four of those and `messagize` belongs to Roadmap 3.7, which leaves **`reply`
-alone** in Roadmap 3.6. The reference has no receipt, query, or key-state builder to port. The
-`ilks` list confirms the other half of that finding: the ilk table declares `rct` and `vrc`, which
-nothing in the pinned source ever constructs, and does not declare `qry` at all. Both lists are
-asserted by the Rust test, so the `N/A` decisions in `PORTING.md` §5.3 rest on recorded evidence
-rather than on a reading of the source.
+Four of those are the key-event builders and `messagize` is attachment composition, which leaves
+**`reply` alone** as a supporting-event builder. The reference has no receipt, query, or key-state
+builder to port. The `ilks` list confirms the other half of that finding: the ilk table declares
+`rct` and `vrc`, which nothing in the pinned source ever constructs, and does not declare `qry` at
+all. Both lists are asserted by the Rust test, so the absence of those builders rests on recorded
+evidence rather than on a reading of the source.
 
 ## Contents
 

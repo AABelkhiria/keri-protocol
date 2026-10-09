@@ -167,7 +167,7 @@ impl InceptionBuilder {
     /// By default a single key with no delegator becomes a basic prefix — the key *is* the
     /// identifier — and anything else becomes self-addressing. The reference instead throws
     /// `Empty Material` for a multi-key inception with no explicit derivation, so multisig
-    /// inception is unreachable through its documented path; see `PORTING.md` §9.
+    /// inception is unreachable through its documented path.
     #[must_use]
     pub fn prefix_derivation(mut self, derivation: PrefixDerivation) -> Self {
         self.derivation = Some(derivation);
@@ -313,8 +313,7 @@ fn threshold_field(threshold: &SigningThreshold, encoding: ThresholdEncoding) ->
 /// That is reproduced exactly, because it changes the bytes the identifier commits to: a weighted
 /// current threshold makes the next threshold textual even under integer encoding. The one
 /// combination the reference cannot express — numeric current, weighted next, integer encoding —
-/// makes it emit an event with no next-threshold field at all, so Rust refuses instead. Both are
-/// recorded in `PORTING.md` §9.
+/// makes it emit an event with no next-threshold field at all, so Rust refuses instead.
 fn next_threshold_field(
     signing: &SigningThreshold,
     next: &SigningThreshold,
@@ -450,7 +449,7 @@ mod tests {
             Err(EventError::SigningThresholdExceedsKeys { required: 2, keys: 1 })
         ));
         // The next threshold is checked against the digests, not the keys -- the reference checks
-        // it against the keys, which is the defect recorded in `PORTING.md` §9.
+        // it against the keys, which is its defect.
         assert!(matches!(
             InceptionBuilder::new(vec![key(TRANSFERABLE)?])
                 .next_key_digests(vec![digest()?])

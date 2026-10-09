@@ -1,9 +1,9 @@
 // Generates and checks deterministic-serialization vectors from the compiled pinned signify-ts
 // checkout.
 //
-// Where the pinned unit test derives values with `Prefixer` (Roadmap 3.4), this generator records
-// the resulting self-addressing data verbatim so the Rust side can prove byte parity for Roadmap
-// 3.2 without implementing prefix derivation.
+// Where the pinned unit test derives values with `Prefixer`, this generator records the resulting
+// self-addressing data verbatim so the Rust side can prove serialization byte parity without
+// deriving the prefix.
 import { readFileSync, writeFileSync } from "node:fs";
 
 import { b, Ilks } from "./node_modules/signify-ts/dist/keri/core/core.js";

@@ -18,9 +18,8 @@ node tools/reference-vectors/registry.mjs --check   # verify determinism
 ## Determinism
 
 `vdr.incept` derives no keys, so every recorded event is exact and the generator is instant. The
-one non-deterministic input — the default random nonce — is recorded by shape only; its Rust
-equivalent arrives with Roadmap 6.4's `randomNonce`, and until then the nonce is a required
-builder input.
+one non-deterministic input — the default random nonce — is recorded by shape only; the nonce is a
+required builder input in Rust.
 
 ## Contents
 

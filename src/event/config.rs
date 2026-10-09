@@ -2,9 +2,9 @@
 //!
 //! An inception event may carry configuration traits in its `c` field that constrain what the
 //! identifier is allowed to do for the rest of its life. The table is the reference's
-//! `TraitCodex` in `src/keri/app/habery.ts`; it is modelled here because `incept` is its first
-//! consumer, and the registry inception of Roadmap 4.7 is its second. Only the codex is ported —
-//! the `Habery` that declares it remains Roadmap 4.4.
+//! `TraitCodex` in `src/keri/app/habery.ts`; it is modelled here because `incept` and the
+//! registry inception consume it. Only the codex is ported; the `Habery` that declares it is the
+//! client's.
 
 use core::fmt;
 use std::str::FromStr;
@@ -12,7 +12,7 @@ use std::str::FromStr;
 /// One configuration trait constraining an identifier.
 ///
 /// Source: `TraitCodex` in the pinned `src/keri/app/habery.ts`. The reference passes these as bare
-/// strings; `AGENTS.md` §2.1 requires an enum for a protocol code table.
+/// strings; a protocol code table is an enum here.
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum ConfigurationTrait {
     /// `EO` — only establishment events are allowed in this identifier's key event log.

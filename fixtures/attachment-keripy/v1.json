@@ -176,6 +176,6 @@
     ],
     "witness_counter_code": "-B",
     "receipt_couple_counter_code": "-C",
-    "note": "Python's `in` iterates the codex dataclass values, so `'B' in NonTransDex` is true and the guards are reachable; signify-ts translated the same guard to a JavaScript `in`, which tests property keys, so its equivalents can never emit and also write the controller counter. keripy is therefore the reference for these two group kinds; see ADR 0009."
+    "note": "Python's `in` iterates the codex dataclass values, so `'B' in NonTransDex` is true and the guards are reachable; signify-ts translated the same guard to a JavaScript `in`, which tests property keys, so its equivalents can never emit and also write the controller counter. keripy is therefore the reference for these two group kinds."
   }
 }

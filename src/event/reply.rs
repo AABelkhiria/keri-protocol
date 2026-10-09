@@ -6,7 +6,7 @@
 //!
 //! This module ports `reply` from `src/keri/core/eventing.ts`. It is the only supporting event
 //! builder the pinned reference exports; receipt, query, and key-state messages have no
-//! implementation there at all, which `PORTING.md` §5.3 records as `N/A` for this item.
+//! implementation there at all, so none is invented here.
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
 
@@ -108,8 +108,8 @@ impl ReplyBuilder {
     /// message — and therefore its SAID — depend on when it was built; a caller that wants "now"
     /// formats it and parses a [`Timestamp`].
     ///
-    /// The route is a plain string because the typed route table is Roadmap 8.1, which owns the
-    /// multisig and IPEX routes this one will join.
+    /// The route is a plain string; the typed route table, with the multisig and IPEX routes,
+    /// belongs to the client.
     #[must_use]
     pub fn new(route: impl Into<String>, timestamp: Timestamp) -> Self {
         Self {

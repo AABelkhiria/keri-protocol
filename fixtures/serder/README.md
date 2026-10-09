@@ -27,7 +27,7 @@ serialized bytes, byte size, `size` accessor value, and derived version string:
   `Prefixer` derivations have rewritten `i` and `d` in place, so the generator reproduces that
   mutation sequence and records the resulting data verbatim. `blake3_prefix` pins the prefix the
   unit test asserts, which proves the sequence was reproduced exactly; Rust consumes the recorded
-  values and does not implement prefix derivation until Roadmap 3.4.
+  values here; prefix derivation is pinned by `fixtures/prefix/`.
 - `pinned_interaction` — the 315-byte interaction event used for sequence-number and parse
   coverage.
 
@@ -58,6 +58,4 @@ version string, and an unsupported serialization kind.
 - **UTF-16 size accessor** — `Serder.size` reports a JavaScript string length, so it reports 312
   for the 313-byte non-ASCII message. The version string itself correctly counts UTF-8 bytes.
 
-Rationale for every divergence is recorded in
-`docs/adr/0008-deterministic-json-serialization.md`. Rust tests consume the checked-in fixture and
-require neither Node nor network access.
+Rust tests consume the checked-in fixture and require neither Node nor network access.

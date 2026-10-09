@@ -7,8 +7,8 @@
 //! for every value this module accepts.
 //!
 //! The accepted value space is deliberately narrower than RFC 8259 so that byte parity is provable
-//! rather than hoped for; see [`SadValue::Integer`] and the module's error variants. Rationale and
-//! the full divergence list are recorded in `docs/adr/0008-deterministic-json-serialization.md`.
+//! rather than hoped for; see [`SadValue::Integer`] and the module's error variants. The
+//! divergences from the reference are pinned by the fixtures.
 
 use core::fmt;
 use std::error::Error;
@@ -128,7 +128,7 @@ impl From<Sad> for SadValue {
 ///
 /// Insertion order is the serialization order. The pinned reference inherits JavaScript object
 /// semantics, which hoist array-index-like keys ahead of the rest; that behavior is a JavaScript
-/// artifact rather than protocol order, so it is deliberately not reproduced. See the ADR.
+/// artifact rather than protocol order, so it is deliberately not reproduced.
 ///
 /// ```
 /// use keri_protocol::serialization::{Sad, SadValue};

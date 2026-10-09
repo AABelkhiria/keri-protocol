@@ -19,8 +19,8 @@ and both paths also write the controller counter, so anything that got through w
 KERI implementation, which KERIA itself is built on — implements both paths correctly: its codex
 `__iter__` yields the code values (`B`, `1AAA`, `1AAC`, `1AAI`), so the guard is reachable, the
 witness group is introduced by `-B` (`WitnessIdxSigs`) and the receipt group by `-C`
-(`NonTransReceiptCouples`), and a transferable key is rejected with a `ValueError`. ADR 0009
-records the decision to verify these two group kinds against keripy.
+(`NonTransReceiptCouples`), and a transferable key is rejected with a `ValueError`. That is
+why these two group kinds are verified against keripy.
 
 ## Generation
 

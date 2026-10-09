@@ -242,7 +242,7 @@ fn the_reference_quirks_hold_and_the_divergences_are_deliberate() -> Result<(), 
     assert_ne!(quirks.issuer_is_unvalidated.rust_decision, "");
     assert!(IdentifierPrefix::from_qb64("not an identifier").is_err());
 
-    // The random-nonce default: shape only, owned by Roadmap 6.4.
+    // The random-nonce default: shape only; the nonce is a caller's input here.
     assert_eq!(fixture.random_nonce_shape.length, 44);
     assert_eq!(fixture.random_nonce_shape.code, "A");
     assert_ne!(fixture.random_nonce_shape.note, "");

@@ -30,7 +30,7 @@ pub enum EventError {
     /// The next-key threshold needs more digests than the event lists.
     ///
     /// The reference compares this threshold against the *current* key count instead, which both
-    /// rejects a valid rotation commitment and accepts an unsatisfiable one; see `PORTING.md` §9.
+    /// rejects a valid rotation commitment and accepts an unsatisfiable one.
     NextThresholdExceedsDigests {
         /// Key positions the threshold requires.
         required: u128,
@@ -46,7 +46,7 @@ pub enum EventError {
     ///
     /// The reference emits an event with **no** next-threshold field at all in this case, because
     /// it selects the field's encoding from the current threshold and then writes an undefined
-    /// value. Rust refuses rather than producing a structurally invalid event; see `PORTING.md` §9.
+    /// value. Rust refuses rather than producing a structurally invalid event.
     UnrepresentableNextThreshold,
     /// A witness list contains the same identifier twice.
     DuplicateWitness {
@@ -92,7 +92,7 @@ pub enum EventError {
     ///
     /// The reference merges the payload over the recipient it just wrote, so a payload field
     /// silently replaces the addressee inside the attribute block while the top-level recipient
-    /// field still names someone else; see `PORTING.md` §9.
+    /// field still names someone else.
     PayloadOverridesRecipient {
         /// Field label the payload may not carry.
         label: &'static str,

@@ -6,9 +6,9 @@
 //! typo silently becomes part of the message a SAID commits to.
 //!
 //! [`Timestamp`] validates the shape instead, and a caller always supplies it: reading the clock
-//! inside a protocol crate would make event construction non-deterministic and untestable, which
-//! `AGENTS.md` forbids. An application that wants "now" formats it with whatever time library it
-//! already uses and parses the result here.
+//! inside a protocol crate would make event construction non-deterministic and untestable. An
+//! application that wants "now" formats it with whatever time library it already uses and parses
+//! the result here.
 
 use core::fmt;
 use std::error::Error;

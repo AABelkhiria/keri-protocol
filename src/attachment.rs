@@ -14,7 +14,7 @@
 //! Controller signature groups, both seal kinds, seal-source couples/triples, and pipelined
 //! framing are verified against the pinned `signify-ts` reference. Witness indexed-signature
 //! groups and non-transferable receipt couples are verified against the pinned `keripy` reference
-//! instead (ADR 0009): the TypeScript paths for both are unreachable — they guard with
+//! instead: the TypeScript paths for both are unreachable — they guard with
 //! `!(verfer.code in NonTransDex)`, and because JavaScript's `in` tests an object's *property
 //! keys* rather than its values, every signature carrying a verifier is rejected — and both write
 //! the controller counter rather than their own. keripy's `messagize` implements both correctly:

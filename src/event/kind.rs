@@ -2,8 +2,8 @@
 //!
 //! This ports the `Ilks` table of the pinned reference's `src/keri/core/core.ts`: the fourteen
 //! three-character message-type codes carried in the `t` field of KERI key events, TEL registry
-//! events, and exchange messages. The pinned table has no `qry` entry; query construction, if
-//! required, is Roadmap 3.6 scope. Unknown ilk text is a typed error, never an implicit string.
+//! events, and exchange messages. The pinned table has no `qry` entry, so there is no query
+//! construction here. Unknown ilk text is a typed error, never an implicit string.
 
 use core::fmt;
 use std::error::Error;
