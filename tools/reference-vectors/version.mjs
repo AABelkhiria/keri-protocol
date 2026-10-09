@@ -20,9 +20,9 @@ import {
   versify,
   Version,
   Vrsn_1_0,
-} from "../../reference/signify-ts/dist/keri/core/core.js";
+} from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { referenceSha } from "./reference.mjs";
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 function versifyCase(name, protocol, major, minor, kind, size) {
   return {

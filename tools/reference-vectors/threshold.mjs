@@ -1,10 +1,10 @@
-// Generates exact signing-threshold vectors from the compiled pinned signify-ts checkout.
+// Generates exact signing-threshold vectors from the pinned signify-ts.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import { Tholder } from "../../reference/signify-ts/dist/keri/core/tholder.js";
+import { Tholder } from "./node_modules/signify-ts/dist/keri/core/tholder.js";
+import { referenceSha } from "./reference.mjs";
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 function hex(bytes) {
   return bytes === undefined ? null : Buffer.from(bytes).toString("hex");

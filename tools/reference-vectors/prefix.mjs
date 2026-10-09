@@ -1,15 +1,15 @@
-// Generates and checks identifier-prefix vectors from the compiled pinned signify-ts checkout.
+// Generates and checks identifier-prefix vectors from the pinned signify-ts.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b, Ilks } from "../../reference/signify-ts/dist/keri/core/core.js";
-import { MtrDex } from "../../reference/signify-ts/dist/keri/core/matter.js";
-import { Prefixer } from "../../reference/signify-ts/dist/keri/core/prefixer.js";
-import { dumps } from "../../reference/signify-ts/dist/keri/core/serder.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { b, Ilks } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { MtrDex } from "./node_modules/signify-ts/dist/keri/core/matter.js";
+import { Prefixer } from "./node_modules/signify-ts/dist/keri/core/prefixer.js";
+import { dumps } from "./node_modules/signify-ts/dist/keri/core/serder.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 // The verification key from the pinned `test/core/prefixer.test.ts`, in both transferability
 // forms, plus the key from the `Prefixer` assertions in `test/core/serder.test.ts`.

@@ -1,16 +1,16 @@
-// Generates and checks core key-event vectors from the compiled pinned signify-ts checkout.
+// Generates and checks core key-event vectors from the pinned signify-ts.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b, Ilks } from "../../reference/signify-ts/dist/keri/core/core.js";
-import { MtrDex } from "../../reference/signify-ts/dist/keri/core/matter.js";
-import { ample, incept, interact, rotate } from "../../reference/signify-ts/dist/keri/core/eventing.js";
-import { Diger } from "../../reference/signify-ts/dist/keri/core/diger.js";
-import { Signer } from "../../reference/signify-ts/dist/keri/core/signer.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { b, Ilks } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { MtrDex } from "./node_modules/signify-ts/dist/keri/core/matter.js";
+import { ample, incept, interact, rotate } from "./node_modules/signify-ts/dist/keri/core/eventing.js";
+import { Diger } from "./node_modules/signify-ts/dist/keri/core/diger.js";
+import { Signer } from "./node_modules/signify-ts/dist/keri/core/signer.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 // The two seeds the pinned `test/core/eventing.test.ts` uses, plus a deterministic family derived
 // from the first so that multi-key and witness cases stay reproducible.

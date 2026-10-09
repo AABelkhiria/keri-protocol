@@ -1,18 +1,18 @@
-// Generates and checks exchange-message vectors from the compiled pinned signify-ts checkout.
+// Generates and checks exchange-message vectors from the pinned signify-ts.
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b, d, Ilks } from "../../reference/signify-ts/dist/keri/core/core.js";
-import { exchange } from "../../reference/signify-ts/dist/keri/app/exchanging.js";
-import { Serder } from "../../reference/signify-ts/dist/keri/core/serder.js";
-import { Diger } from "../../reference/signify-ts/dist/keri/core/diger.js";
-import { MtrDex } from "../../reference/signify-ts/dist/keri/core/matter.js";
-import { Salter, Tier } from "../../reference/signify-ts/dist/keri/core/salter.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { b, d, Ilks } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { exchange } from "./node_modules/signify-ts/dist/keri/app/exchanging.js";
+import { Serder } from "./node_modules/signify-ts/dist/keri/core/serder.js";
+import { Diger } from "./node_modules/signify-ts/dist/keri/core/diger.js";
+import { MtrDex } from "./node_modules/signify-ts/dist/keri/core/matter.js";
+import { Salter, Tier } from "./node_modules/signify-ts/dist/keri/core/salter.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 // Identifiers already pinned by earlier fixtures: a self-addressing sender, a self-addressing
 // recipient, and a basic (Ed25519) sender. The reference validates none of them, so using real

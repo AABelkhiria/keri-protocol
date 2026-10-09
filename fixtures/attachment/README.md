@@ -9,10 +9,10 @@
   `raw` is the same bytes as text and the two are cross-checked on load. Each case also records the
   `event` and `attachments` halves separately, and the Rust test asserts they reassemble.
 
-Generate and verify from the repository root after building the pinned checkout:
+Generate and verify from the repository root:
 
 ```bash
-npm --prefix reference/signify-ts run build
+npm ci --prefix tools/reference-vectors
 node tools/reference-vectors/attachment.mjs --write   # regenerate
 node tools/reference-vectors/attachment.mjs --check   # verify determinism
 ```

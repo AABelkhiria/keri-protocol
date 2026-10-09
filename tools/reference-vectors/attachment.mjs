@@ -1,20 +1,20 @@
-// Generates and checks CESR attachment vectors from the compiled pinned signify-ts checkout.
+// Generates and checks CESR attachment vectors from the pinned signify-ts.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b, d } from "../../reference/signify-ts/dist/keri/core/core.js";
-import { MtrDex, NonTransDex } from "../../reference/signify-ts/dist/keri/core/matter.js";
-import { incept, interact, messagize } from "../../reference/signify-ts/dist/keri/core/eventing.js";
+import { b, d } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { MtrDex, NonTransDex } from "./node_modules/signify-ts/dist/keri/core/matter.js";
+import { incept, interact, messagize } from "./node_modules/signify-ts/dist/keri/core/eventing.js";
 import {
   serializeACDCAttachment,
   serializeIssExnAttachment,
-} from "../../reference/signify-ts/dist/keri/core/utils.js";
-import { Diger } from "../../reference/signify-ts/dist/keri/core/diger.js";
-import { Signer } from "../../reference/signify-ts/dist/keri/core/signer.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+} from "./node_modules/signify-ts/dist/keri/core/utils.js";
+import { Diger } from "./node_modules/signify-ts/dist/keri/core/diger.js";
+import { Signer } from "./node_modules/signify-ts/dist/keri/core/signer.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 // The two seeds the pinned `test/core/eventing.test.ts` uses.
 const SEED_0 = new Uint8Array([

@@ -9,10 +9,10 @@
   string exactly as emitted by the reference. `major`/`minor` in deversify cases are recorded as
   strings so JavaScript `NaN` observations survive JSON.
 
-Generate from the repository root after building the pinned checkout:
+Generate from the repository root:
 
 ```bash
-npm --prefix reference/signify-ts run build
+npm ci --prefix tools/reference-vectors
 node tools/reference-vectors/version.mjs
 ```
 

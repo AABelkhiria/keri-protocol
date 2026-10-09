@@ -2,15 +2,15 @@
 // checkout.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b } from "../../reference/signify-ts/dist/keri/core/core.js";
-import { MtrDex } from "../../reference/signify-ts/dist/keri/core/matter.js";
-import { Saider } from "../../reference/signify-ts/dist/keri/core/saider.js";
-import { dumps } from "../../reference/signify-ts/dist/keri/core/serder.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { b } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import { MtrDex } from "./node_modules/signify-ts/dist/keri/core/matter.js";
+import { Saider } from "./node_modules/signify-ts/dist/keri/core/saider.js";
+import { dumps } from "./node_modules/signify-ts/dist/keri/core/serder.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 
 function hex(bytes) {
   return Buffer.from(bytes).toString("hex");

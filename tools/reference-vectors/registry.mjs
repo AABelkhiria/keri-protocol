@@ -1,15 +1,15 @@
-// Generates and checks registry-inception vectors from the compiled pinned signify-ts checkout.
+// Generates and checks registry-inception vectors from the pinned signify-ts.
 //
 // `vdr.incept` derives no keys, so everything here is fast and fully deterministic apart from the
 // default nonce, whose shape alone is recorded.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { vdr } from "../../reference/signify-ts/dist/keri/core/vdring.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { vdr } from "./node_modules/signify-ts/dist/keri/core/vdring.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "91a04a5edd804425f42be75ffbf034f8d14e5cb2";
 
 /** The issuer and nonce the pinned `vdring.test.ts` uses throughout. */
 const ISSUER = "ECJIoBpEcCWMzvquk861dXP8JJZ-vbmJczlDR-NYcE3g";

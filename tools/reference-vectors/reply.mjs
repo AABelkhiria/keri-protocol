@@ -1,13 +1,13 @@
-// Generates and checks reply-message vectors from the compiled pinned signify-ts checkout.
+// Generates and checks reply-message vectors from the pinned signify-ts.
 import { readFileSync, writeFileSync } from "node:fs";
 
-import { b, Ilks, Serials } from "../../reference/signify-ts/dist/keri/core/core.js";
-import * as eventing from "../../reference/signify-ts/dist/keri/core/eventing.js";
-import libsodium from "../../reference/signify-ts/node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { b, Ilks, Serials } from "./node_modules/signify-ts/dist/keri/core/core.js";
+import * as eventing from "./node_modules/signify-ts/dist/keri/core/eventing.js";
+import libsodium from "./node_modules/libsodium-wrappers-sumo/dist/modules-sumo-esm/libsodium-wrappers.mjs";
+import { referenceSha } from "./reference.mjs";
 
 await libsodium.ready;
 
-const referenceSha = "ae92eceb8e776ad57669707bff7f84db9390b711";
 const { reply } = eventing;
 
 // The stamp the pinned `test/app/aiding.test.ts` asserts.

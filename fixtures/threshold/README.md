@@ -8,10 +8,10 @@
 - Binary fields: lowercase hexadecimal; `limen_hex` is the UTF-8 byte encoding of reference-produced
   numeric CESR qualified Base64.
 
-Generate from the repository root after building the pinned checkout:
+Generate from the repository root:
 
 ```bash
-npm --prefix reference/signify-ts run build
+npm ci --prefix tools/reference-vectors
 node tools/reference-vectors/threshold.mjs
 ```
 

@@ -1,1 +1,3 @@
 /target/
+/tools/reference-vectors/node_modules/
+/tools/reference-vectors/.venv/

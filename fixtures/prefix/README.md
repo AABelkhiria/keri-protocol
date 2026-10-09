@@ -9,10 +9,10 @@
   reference hashes for a self-addressing prefix; `preimage` is the same bytes as text and the two
   are cross-checked on load. Basic derivations hash nothing, so their preimage fields are `null`.
 
-Generate and verify from the repository root after building the pinned checkout:
+Generate and verify from the repository root:
 
 ```bash
-npm --prefix reference/signify-ts run build
+npm ci --prefix tools/reference-vectors
 node tools/reference-vectors/prefix.mjs --write   # regenerate
 node tools/reference-vectors/prefix.mjs --check   # verify determinism
 ```
