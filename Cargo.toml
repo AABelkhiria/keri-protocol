@@ -1,13 +1,16 @@
 [package]
 name = "keri-protocol"
-version = "0.0.0"
+version = "0.1.0"
 description = "KERI protocol messages: events, SAIDs, prefixes, thresholds and CESR attachments"
 edition = "2024"
 rust-version = "1.97"
-publish = false
 license = "Apache-2.0 OR MIT"
+repository = "https://github.com/AABelkhiria/keri-protocol"
+documentation = "https://docs.rs/keri-protocol"
+readme = "README.md"
 keywords = ["keri", "kel", "tel", "cesr", "identity"]
 categories = ["cryptography", "encoding"]
+exclude = [".github/", "tools/", "deny.toml", "rustfmt.toml", "rust-toolchain.toml", ".gitignore"]
 
 [dependencies]
 keri-cesr = { version = "0.1.0", features = ["crypto"] }
