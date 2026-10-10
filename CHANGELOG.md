@@ -3,7 +3,7 @@
 > Following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 > and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2026-10-09
+## [0.1.0] - 2026-10-10
 
 First release, extracted from the signify-rs project with its history.
 
