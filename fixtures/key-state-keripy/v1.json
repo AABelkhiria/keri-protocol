@@ -1,0 +1,776 @@
+{
+  "schema_version": 1,
+  "upstream": "https://github.com/WebOfTrust/keripy.git",
+  "reference_sha": "4ce4cc79e06653f77342be1bf604086b89b1f090",
+  "reference_version": "1.3.6",
+  "generated_on": "2026-10-22",
+  "sources": [
+    "src/keri/core/eventing.py",
+    "src/keri/db/basing.py",
+    "src/keri/app/watching.py"
+  ],
+  "timestamp": "2021-01-01T00:00:00.000000+00:00",
+  "field_labels": [
+    "vn",
+    "i",
+    "s",
+    "p",
+    "d",
+    "f",
+    "dt",
+    "et",
+    "kt",
+    "k",
+    "nt",
+    "n",
+    "bt",
+    "b",
+    "c",
+    "ee",
+    "di"
+  ],
+  "establishment_labels": [
+    "s",
+    "d",
+    "br",
+    "ba"
+  ],
+  "cases": [
+    {
+      "name": "inception_defaults",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "inception_witnessed",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 2,
+        "witnesses": [
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"2\",\"b\":[\"BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4\",\"BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL\"],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "inception_default_witness_threshold",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL",
+          "BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"2\",\"b\":[\"BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4\",\"BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL\",\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "rotation_with_cuts_and_adds",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 1,
+        "prior": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+        "first_seen": 1,
+        "latest_kind": "rot",
+        "keys": [
+          "DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 2,
+        "witnesses": [
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL",
+          "BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 1,
+          "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+          "removed": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ],
+          "added": [
+            "BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U"
+          ]
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"1\",\"p\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"f\":\"1\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"rot\",\"kt\":\"1\",\"k\":[\"DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V\"],\"nt\":\"1\",\"n\":[\"EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP\"],\"bt\":\"2\",\"b\":[\"BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL\",\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"],\"c\":[],\"ee\":{\"s\":\"1\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"br\":[\"BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4\"],\"ba\":[\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"]},\"di\":\"\"}"
+    },
+    {
+      "name": "interaction_after_rotation",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 2,
+        "prior": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+        "said": "EHiF7WCwHEsUX5kAnT46TnIHyHsBkToTkKHagp1hALWY",
+        "first_seen": 2,
+        "latest_kind": "ixn",
+        "keys": [
+          "DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 2,
+        "witnesses": [
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL",
+          "BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 1,
+          "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+          "removed": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ],
+          "added": [
+            "BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U"
+          ]
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"2\",\"p\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"d\":\"EHiF7WCwHEsUX5kAnT46TnIHyHsBkToTkKHagp1hALWY\",\"f\":\"2\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"ixn\",\"kt\":\"1\",\"k\":[\"DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V\"],\"nt\":\"1\",\"n\":[\"EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP\"],\"bt\":\"2\",\"b\":[\"BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL\",\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"],\"c\":[],\"ee\":{\"s\":\"1\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"br\":[\"BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4\"],\"ba\":[\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"]},\"di\":\"\"}"
+    },
+    {
+      "name": "weighted_multisig",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4",
+          "DCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+          "DCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd"
+        ],
+        "signing_threshold": "[\"1/2\",\"1/2\",\"1/2\"]",
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf",
+          "EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP",
+          "ELiQaOTKN0oPc7GvXREQf-Gb6Hp5eIiuoiVaZrcllt8I"
+        ],
+        "next_threshold": "[[\"1/2\",\"1/2\"],[\"1\"]]",
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":[\"1/2\",\"1/2\",\"1/2\"],\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\",\"DCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"DCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"],\"nt\":[[\"1/2\",\"1/2\"],[\"1\"]],\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\",\"EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP\",\"ELiQaOTKN0oPc7GvXREQf-Gb6Hp5eIiuoiVaZrcllt8I\"],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "delegated_with_traits",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "dip",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [
+          "EO",
+          "DND"
+        ],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": "DBPZkIpwklmS7VRgB9J_UNpounIX72KsPMp4RSn_EEcc"
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"dip\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"0\",\"b\":[],\"c\":[\"EO\",\"DND\"],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"DBPZkIpwklmS7VRgB9J_UNpounIX72KsPMp4RSn_EEcc\"}"
+    },
+    {
+      "name": "abandoned",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 1,
+        "prior": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+        "first_seen": 1,
+        "latest_kind": "rot",
+        "keys": [
+          "DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V"
+        ],
+        "signing_threshold": null,
+        "next_digests": [],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 1,
+          "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"1\",\"p\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"f\":\"1\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"rot\",\"kt\":\"1\",\"k\":[\"DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V\"],\"nt\":\"0\",\"n\":[],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"1\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "large_numbers",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 18446744073709551616,
+        "prior": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+        "said": "EHiF7WCwHEsUX5kAnT46TnIHyHsBkToTkKHagp1hALWY",
+        "first_seen": 300,
+        "latest_kind": "ixn",
+        "keys": [
+          "DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 65535,
+          "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"10000000000000000\",\"p\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"d\":\"EHiF7WCwHEsUX5kAnT46TnIHyHsBkToTkKHagp1hALWY\",\"f\":\"12c\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"ixn\",\"kt\":\"1\",\"k\":[\"DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V\"],\"nt\":\"1\",\"n\":[\"EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP\"],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"ffff\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "inception_forked",
+      "inputs": null,
+      "record_json": "{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"0\",\"p\":\"\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    },
+    {
+      "name": "other_identifier",
+      "inputs": null,
+      "record_json": "{\"vn\":[1,0],\"i\":\"DBPZkIpwklmS7VRgB9J_UNpounIX72KsPMp4RSn_EEcc\",\"s\":\"0\",\"p\":\"\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"0\",\"b\":[],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"br\":[],\"ba\":[]},\"di\":\"\"}"
+    }
+  ],
+  "ksn_reply": {
+    "route": "/ksn/BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+    "raw": "{\"v\":\"KERI10JSON000378_\",\"t\":\"rpy\",\"d\":\"EG4FDQdCijjSGCeaJl6pYohOmdzJJnCrGgpVPZmh0KoU\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/ksn/BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"a\":{\"vn\":[1,0],\"i\":\"ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa\",\"s\":\"2\",\"p\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"d\":\"EHiF7WCwHEsUX5kAnT46TnIHyHsBkToTkKHagp1hALWY\",\"f\":\"2\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"ixn\",\"kt\":\"1\",\"k\":[\"DBdFU7RW3d_GkI7KscEB_mqyHiuqBhd5W31DpjSCmT_V\"],\"nt\":\"1\",\"n\":[\"EOoDivKv8YiDi0v_d-gqAMlm9-iecJRGgv5EQ6yWT5kP\"],\"bt\":\"2\",\"b\":[\"BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv\",\"BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL\",\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"],\"c\":[],\"ee\":{\"s\":\"1\",\"d\":\"EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9\",\"br\":[\"BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4\"],\"ba\":[\"BIjehOKVxDZ0kG9Zc6ks1auAFxUS-AVa31cYtH270C5U\"]},\"di\":\"\"}}",
+    "raw_hex": "7b2276223a224b45524931304a534f4e3030303337385f222c2274223a22727079222c2264223a224547344644516443696a6a53474365614a6c3670596f684f6d647a4a4a6e437247677056505a6d68304b6f55222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6b736e2f424c7a684a6567446545494f4251466e3361377a79486b4c4d6e7970356378424f454b4155752d316a774876222c2261223a7b22766e223a5b312c305d2c2269223a22454e4237655735514e4370744b69654e384f447374416b4637755664684661706f762d4c31516538547a7161222c2273223a2232222c2270223a2245454a446e6a5f57397853787062334f73535f44785065537a33466b55575477314d4e63584653314c5f4739222c2264223a2245486946375743774845735558356b416e543436546e4948794873426b546f546b4b486167703168414c5759222c2266223a2232222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c226574223a2269786e222c226b74223a2231222c226b223a5b22444264465537525733645f476b49374b736345425f6d7179486975714268643557333144706a53436d545f56225d2c226e74223a2231222c226e223a5b22454f6f4469764b76385969446930765f642d6771414d6c6d392d6965634a5247677635455136795754356b50225d2c226274223a2232222c2262223a5b22424c7a684a6567446545494f4251466e3361377a79486b4c4d6e7970356378424f454b4155752d316a774876222c2242444b31506f677550617242674e656c39694a4e59625a41473050354164734a384f5459544f546b6f6e474c222c2242496a65684f4b5678445a306b47395a63366b7331617541467855532d415661333163597448323730433555225d2c2263223a5b5d2c226565223a7b2273223a2231222c2264223a2245454a446e6a5f57397853787062334f73535f44785065537a33466b55575477314d4e63584653314c5f4739222c226272223a5b22424e336a764d374838365a714552583058584950546345317736353854694c636f345f624876317153565f34225d2c226261223a5b2242496a65684f4b5678445a306b47395a63366b7331617541467855532d415661333163597448323730433555225d7d2c226469223a22227d7d"
+  },
+  "comparisons": [
+    {
+      "name": "even",
+      "local": "inception_defaults",
+      "reported": "inception_witnessed",
+      "state": "even",
+      "sequence_number": 0,
+      "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa"
+    },
+    {
+      "name": "duplicitous",
+      "local": "inception_defaults",
+      "reported": "inception_forked",
+      "state": "duplicitous",
+      "sequence_number": 0,
+      "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9"
+    },
+    {
+      "name": "ahead",
+      "local": "inception_defaults",
+      "reported": "rotation_with_cuts_and_adds",
+      "state": "ahead",
+      "sequence_number": 1,
+      "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9"
+    },
+    {
+      "name": "behind",
+      "local": "interaction_after_rotation",
+      "reported": "rotation_with_cuts_and_adds",
+      "state": "behind",
+      "sequence_number": 1,
+      "said": "EEJDnj_W9xSxpb3OsS_DxPeSz3FkUWTw1MNcXFS1L_G9"
+    }
+  ],
+  "comparison_of_different_identifiers": {
+    "local": "inception_defaults",
+    "reported": "other_identifier",
+    "reference_error_category": "ValueError",
+    "reference_error_message": "can't compare key states from different AIDs ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa/DBPZkIpwklmS7VRgB9J_UNpounIX72KsPMp4RSn_EEcc",
+    "rust_error_category": "IdentifierMismatch"
+  },
+  "rejected_cases": [
+    {
+      "name": "receipt_as_latest_event",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "rct",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid event type et=rct in key state.",
+      "rust_error_category": "InvalidLatestEventKind"
+    },
+    {
+      "name": "zero_signing_threshold",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": "\"0\"",
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid sith = 0 less than 1.",
+      "rust_error_category": "SigningThresholdIsZero"
+    },
+    {
+      "name": "signing_threshold_above_keys",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": "\"2\"",
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid sith = 2 for keys = ['DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4']",
+      "rust_error_category": "SigningThresholdExceedsKeys"
+    },
+    {
+      "name": "next_threshold_above_digests",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": "\"2\"",
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid nsith = 2 for keys = ['EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf']",
+      "rust_error_category": "NextThresholdExceedsDigests"
+    },
+    {
+      "name": "duplicate_witness",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 1,
+        "witnesses": [
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid wits = ['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4', 'BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4'], has duplicates.",
+      "rust_error_category": "DuplicateWitness"
+    },
+    {
+      "name": "zero_witness_threshold_with_witnesses",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 0,
+        "witnesses": [
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid toad = 0 for wits = OrderedSet(['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4', 'BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv', 'BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL'])",
+      "rust_error_category": "InvalidWitnessThreshold"
+    },
+    {
+      "name": "witness_threshold_above_witnesses",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 4,
+        "witnesses": [
+          "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+          "BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv",
+          "BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL"
+        ],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid toad = 4 for wits = OrderedSet(['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4', 'BLzhJegDeEIOBQFn3a7zyHkLMnyp5cxBOEKAUu-1jwHv', 'BDK1PoguParBgNel9iJNYbZAG0P5AdsJ8OTYTOTkonGL'])",
+      "rust_error_category": "InvalidWitnessThreshold"
+    },
+    {
+      "name": "witness_threshold_without_witnesses",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": 1,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid toad = 1 for wits = OrderedSet()",
+      "rust_error_category": "InvalidWitnessThreshold"
+    },
+    {
+      "name": "duplicate_cut",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ],
+          "added": []
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid cuts = ['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4', 'BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4'], has duplicates, in latest est event, .",
+      "rust_error_category": "DuplicateWitness"
+    },
+    {
+      "name": "duplicate_add",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [],
+          "added": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4",
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ]
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Invalid adds = ['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4', 'BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4'], has duplicates, in latest est event,.",
+      "rust_error_category": "DuplicateWitness"
+    },
+    {
+      "name": "cut_and_added",
+      "inputs": {
+        "identifier": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "sequence_number": 0,
+        "prior": "",
+        "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+        "first_seen": 0,
+        "latest_kind": "icp",
+        "keys": [
+          "DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4"
+        ],
+        "signing_threshold": null,
+        "next_digests": [
+          "EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf"
+        ],
+        "next_threshold": null,
+        "witness_threshold": null,
+        "witnesses": [],
+        "configuration": [],
+        "establishment": {
+          "sequence_number": 0,
+          "said": "ENB7eW5QNCptKieN8ODstAkF7uVdhFapov-L1Qe8Tzqa",
+          "removed": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ],
+          "added": [
+            "BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4"
+          ]
+        },
+        "delegator": null
+      },
+      "reference_error_category": "ValueError",
+      "reference_error_message": "Intersecting cuts = ['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4'] and adds = ['BN3jvM7H86ZqERX0XXIPTcE1w658TiLco4_bHv1qSV_4'] in latest est event.",
+      "rust_error_category": "ConflictingWitnessLists"
+    }
+  ],
+  "reference_quirk_unreachable_ample_default": {
+    "witnesses": 4,
+    "keripy_default": 2,
+    "note": "keripy's `state` assigns a simple-majority default to `toad` and then tests `toad is None` again to fall back to `ample`, which can therefore never run. The reachable default is reproduced: a majority, so two of four witnesses where `ample` would give three."
+  }
+}

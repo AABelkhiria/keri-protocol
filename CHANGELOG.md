@@ -13,6 +13,8 @@
   builder and field table.
 - `event::query`: builds and reads the `qry` query message with typed `logs`, `ksn` and `mbx`
   arguments, verified against keripy's builder, askers and field table; `EventKind::Query`.
+- `event::key_state`: builds, reads and compares the key state record a `ksn` query is answered
+  with, verified against keripy's `state`, `KeyStateRecord` and `diffState`.
 
 ## [0.1.0] - 2026-10-10
 

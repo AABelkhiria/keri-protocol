@@ -17,6 +17,8 @@ use keri_protocol::event::KeyEvent;
 use keri_protocol::event::exchange::{ExchangeBuilder, ExchangeEmbed};
 use keri_protocol::event::inception::InceptionBuilder;
 use keri_protocol::event::interaction::InteractionBuilder;
+use keri_protocol::event::key_state::{KeyStateBuilder, KeyStateRecord, LatestEstablishment};
+use keri_protocol::event::kind::EventKind;
 use keri_protocol::event::query::{QueryArguments, QueryBuilder};
 use keri_protocol::event::receipt::ReceiptBuilder;
 use keri_protocol::event::reply::ReplyBuilder;
@@ -262,5 +264,46 @@ fn benchmark_query(criterion: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, benchmark_eventing, benchmark_receipt, benchmark_query);
+/// A watcher reads one key state per witness per poll and writes one per answer.
+fn benchmark_key_state(criterion: &mut Criterion) {
+    let (Ok(identifier), Ok(said), Ok(stamp), Ok(key), Ok(witness)) = (
+        IdentifierPrefix::from_qb64(BENCH_IDENTIFIER),
+        Said::from_qb64(BENCH_IDENTIFIER),
+        Timestamp::parse(STAMP),
+        VerificationKey::from_qb64(KEY),
+        IdentifierPrefix::from_qb64(BENCH_WITNESS_KEY),
+    ) else {
+        return;
+    };
+    let Ok(record) = KeyStateBuilder::new(
+        identifier,
+        0,
+        said,
+        EventKind::Inception,
+        stamp,
+        vec![key],
+        LatestEstablishment::new(0, said),
+    )
+    .witnesses(vec![witness])
+    .build() else {
+        return;
+    };
+    let Ok(map) = record.to_sad() else {
+        return;
+    };
+    criterion.bench_function("write_key_state", |bencher| {
+        bencher.iter(|| black_box(&record).to_sad());
+    });
+    criterion.bench_function("read_key_state", |bencher| {
+        bencher.iter(|| KeyStateRecord::from_sad(black_box(&map)));
+    });
+}
+
+criterion_group!(
+    benches,
+    benchmark_eventing,
+    benchmark_receipt,
+    benchmark_query,
+    benchmark_key_state
+);
 criterion_main!(benches);

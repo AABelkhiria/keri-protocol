@@ -11,6 +11,7 @@ use crate::event::timestamp::TimestampError;
 use crate::prefix::PrefixError;
 use crate::said::SaidError;
 use crate::serialization::{SadError, SerializationError};
+use crate::threshold::ThresholdError;
 
 /// Stable key-event construction failures.
 #[derive(Debug)]
@@ -174,6 +175,18 @@ pub enum EventError {
         /// The required key.
         key: &'static str,
     },
+    /// A key state names a latest event that is not a key event.
+    InvalidLatestEventKind {
+        /// Bounded copy of the kind found.
+        found: String,
+    },
+    /// A key state carries a configuration trait KERI does not define.
+    UnknownConfigurationTrait {
+        /// Bounded copy of the trait found.
+        found: String,
+    },
+    /// Two key states being compared belong to different identifiers.
+    IdentifierMismatch,
     /// A message read from a stream does not carry exactly the fields its kind defines.
     ///
     /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
@@ -198,6 +211,11 @@ pub enum EventError {
     Sad {
         /// Underlying value/codec failure.
         source: Box<SadError>,
+    },
+    /// A threshold read from a stream is malformed.
+    Threshold {
+        /// Underlying threshold failure.
+        source: Box<ThresholdError>,
     },
     /// A message timestamp read from a stream is malformed.
     Timestamp {
@@ -236,6 +254,12 @@ impl EventError {
 
     pub(crate) fn sad(source: SadError) -> Self {
         Self::Sad {
+            source: Box::new(source),
+        }
+    }
+
+    pub(crate) fn threshold(source: ThresholdError) -> Self {
+        Self::Threshold {
             source: Box::new(source),
         }
     }
@@ -347,9 +371,40 @@ impl fmt::Display for EventError {
                 "attachment for embed {label:?} needs {quadlets} quadlets, more than its counter can express"
             ),
             Self::ValueOutOfRange { context } => write!(formatter, "{context} exceeds its encodable range"),
+            Self::UnexpectedKind { .. }
+            | Self::InvalidLatestEventKind { .. }
+            | Self::UnknownConfigurationTrait { .. }
+            | Self::IdentifierMismatch
+            | Self::UnexpectedFieldShape { .. }
+            | Self::MissingQueryKey { .. }
+            | Self::UnexpectedFieldLayout { .. } => self.fmt_read_failure(formatter),
+            Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
+            Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
+            Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),
+            Self::Threshold { .. } => formatter.write_str("threshold is invalid"),
+            Self::Timestamp { .. } => formatter.write_str("message timestamp is invalid"),
+            Self::Serialization { .. } => formatter.write_str("event serialization failed"),
+            Self::Crypto { .. } => formatter.write_str("key or digest material is invalid"),
+            Self::Cesr { .. } => formatter.write_str("counter or path material is invalid"),
+        }
+    }
+}
+
+impl EventError {
+    /// Writes the failures raised while reading a message from a stream, kept apart from the
+    /// construction failures above.
+    fn fmt_read_failure(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
             Self::UnexpectedKind { expected, found } => {
                 write!(formatter, "message kind {found:?} is not {}", expected.as_str())
             }
+            Self::InvalidLatestEventKind { found } => {
+                write!(formatter, "key state latest event kind {found:?} is not a key event")
+            }
+            Self::UnknownConfigurationTrait { found } => {
+                write!(formatter, "key state carries unknown configuration trait {found:?}")
+            }
+            Self::IdentifierMismatch => formatter.write_str("key states belong to different identifiers"),
             Self::UnexpectedFieldShape { label } => {
                 write!(formatter, "message field {label:?} has an unexpected shape")
             }
@@ -357,13 +412,7 @@ impl fmt::Display for EventError {
             Self::UnexpectedFieldLayout { expected, found } => {
                 write!(formatter, "message fields {found:?} are not the layout {expected:?}")
             }
-            Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
-            Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
-            Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),
-            Self::Timestamp { .. } => formatter.write_str("message timestamp is invalid"),
-            Self::Serialization { .. } => formatter.write_str("event serialization failed"),
-            Self::Crypto { .. } => formatter.write_str("key or digest material is invalid"),
-            Self::Cesr { .. } => formatter.write_str("counter or path material is invalid"),
+            _ => formatter.write_str("message could not be read"),
         }
     }
 }
@@ -374,6 +423,7 @@ impl Error for EventError {
             Self::Prefix { source } => Some(source.as_ref()),
             Self::Said { source } => Some(source.as_ref()),
             Self::Sad { source } => Some(source.as_ref()),
+            Self::Threshold { source } => Some(source.as_ref()),
             Self::Timestamp { source } => Some(source.as_ref()),
             Self::Serialization { source } => Some(source.as_ref()),
             Self::Crypto { source } => Some(source.as_ref()),

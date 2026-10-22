@@ -7,7 +7,8 @@
 //!
 //! [`reply`] is the only supporting event builder the pinned signify-ts reference exports.
 //! [`receipt`] and [`query`] build and read the `rct` and `qry` messages that reference never
-//! constructs, ported from keripy instead. Validator-receipt and key-state messages have no
+//! constructs, ported from keripy instead, and [`key_state`] builds, reads and compares the key
+//! state record a `ksn` query is answered with. Validator-receipt and key-state messages have no
 //! builder in either reference's public API, so those are not invented here.
 //!
 //! [`exchange`] builds the routed message controllers send each other, together with the embedded
@@ -20,6 +21,7 @@ pub mod exchange;
 pub mod inception;
 pub mod interaction;
 mod key_event;
+pub mod key_state;
 pub mod kind;
 pub mod query;
 pub mod receipt;
