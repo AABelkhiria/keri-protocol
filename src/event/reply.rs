@@ -4,23 +4,35 @@
 //! a location scheme — rather than an entry in a key event log. It has no identifier prefix and no
 //! sequence number: only its route, its timestamp, and the attributes being asserted.
 //!
-//! This module ports `reply` from `src/keri/core/eventing.ts`. It is the only supporting event
-//! builder the pinned reference exports; receipt, query, and key-state messages have no
-//! implementation there at all, so none is invented here.
+//! This module ports `reply` from `src/keri/core/eventing.ts`, and reads one back the way keripy's
+//! `Revery.processReply` does: the fields must be exactly the reply's, and the SAID must verify.
+//! The routes a reply is addressed to, and what each carries, are [`route`]'s.
+
+pub mod route;
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
 
-use crate::event::error::EventError;
+use crate::event::error::{EventError, bounded_label};
 use crate::event::inception::ANCHORS_LABEL;
 use crate::event::kind::EventKind;
 use crate::event::timestamp::Timestamp;
-use crate::said::{DEFAULT_SAID_LABEL, Said};
+use crate::said::{DEFAULT_SAID_LABEL, Said, SaidVerification};
 use crate::serialization::{KIND_LABEL, SAID_LABEL, Sad, SadValue, SerializedEvent, VERSION_LABEL};
 
 /// Field label carrying the message timestamp.
 pub const TIMESTAMP_LABEL: &str = "dt";
 /// Field label carrying the message route.
 pub const ROUTE_LABEL: &str = "r";
+
+/// The field labels of a reply, in protocol order.
+pub const FIELD_LABELS: [&str; 6] = [
+    VERSION_LABEL,
+    KIND_LABEL,
+    SAID_LABEL,
+    TIMESTAMP_LABEL,
+    ROUTE_LABEL,
+    ANCHORS_LABEL,
+];
 
 /// Largest route this builder accepts, in bytes.
 ///
@@ -36,9 +48,83 @@ pub const MAX_ROUTE_BYTES: usize = 1024;
 pub struct ReplyMessage {
     serialized: SerializedEvent,
     said: Said,
+    timestamp: Timestamp,
 }
 
 impl ReplyMessage {
+    /// Reads the reply a parsed message carries, verifying its SAID.
+    ///
+    /// The message must be a `rpy` with exactly the six reply fields in protocol order, as
+    /// keripy's `SerderKERI` requires, and its `d` must be the digest of its own bytes, which
+    /// keripy's `Revery.processReply` checks before routing it.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`EventError::UnexpectedKind`] when the message is not a reply,
+    /// [`EventError::UnexpectedFieldLayout`] when its fields are not exactly the reply's,
+    /// [`EventError::UnexpectedFieldShape`] when a field has the wrong shape,
+    /// [`EventError::Timestamp`] for a malformed `dt`, [`EventError::RouteTooLong`] for an
+    /// overlong route, and layered [`EventError::Said`] failures when `d` is malformed or does not
+    /// match the message.
+    pub fn from_serialized(serialized: SerializedEvent) -> Result<Self, EventError> {
+        let kind = serialized.sad().get_text(KIND_LABEL).unwrap_or_default();
+        if kind != EventKind::Reply.as_str() {
+            return Err(EventError::UnexpectedKind {
+                expected: EventKind::Reply,
+                found: bounded_label(kind),
+            });
+        }
+        let labels: Vec<&str> = serialized.sad().entries().map(|(label, _)| label).collect();
+        if labels != FIELD_LABELS {
+            return Err(EventError::UnexpectedFieldLayout {
+                expected: "v, t, d, dt, r, a",
+                found: bounded_label(&labels.join(", ")),
+            });
+        }
+        let route = serialized
+            .sad()
+            .get_text(ROUTE_LABEL)
+            .ok_or(EventError::UnexpectedFieldShape { label: ROUTE_LABEL })?;
+        if route.len() > MAX_ROUTE_BYTES {
+            return Err(EventError::RouteTooLong { length: route.len() });
+        }
+        if serialized.sad().get(ANCHORS_LABEL).and_then(SadValue::as_map).is_none() {
+            return Err(EventError::UnexpectedFieldShape { label: ANCHORS_LABEL });
+        }
+        let timestamp = serialized
+            .sad()
+            .get_text(TIMESTAMP_LABEL)
+            .ok_or(EventError::UnexpectedFieldShape { label: TIMESTAMP_LABEL })
+            .and_then(|text| Timestamp::parse(text).map_err(EventError::timestamp))?;
+        let said = serialized
+            .said()
+            .ok_or(EventError::UnexpectedFieldShape { label: SAID_LABEL })
+            .and_then(|text| Said::from_qb64(text).map_err(EventError::said))?;
+        said.verify(serialized.sad(), DEFAULT_SAID_LABEL, SaidVerification::strict())
+            .map_err(EventError::said)?;
+        Ok(Self {
+            serialized,
+            said,
+            timestamp,
+        })
+    }
+
+    /// Returns when the reply was made.
+    #[must_use]
+    pub const fn timestamp(&self) -> &Timestamp {
+        &self.timestamp
+    }
+
+    /// Borrows the attributes the reply asserts, its `a` block.
+    #[must_use]
+    pub fn attributes(&self) -> &Sad {
+        static EMPTY: Sad = Sad::new();
+        self.sad()
+            .get(ANCHORS_LABEL)
+            .and_then(SadValue::as_map)
+            .unwrap_or(&EMPTY)
+    }
+
     /// Returns the exact serialized message bytes.
     #[must_use]
     pub fn raw(&self) -> &[u8] {
@@ -147,7 +233,7 @@ impl ReplyBuilder {
         insert(VERSION_LABEL, SadValue::text("KERI10JSON000000_"))?;
         insert(KIND_LABEL, SadValue::text(EventKind::Reply.as_str()))?;
         insert(SAID_LABEL, SadValue::text(""))?;
-        insert(TIMESTAMP_LABEL, SadValue::Text(self.timestamp.into_string()))?;
+        insert(TIMESTAMP_LABEL, SadValue::text(self.timestamp.as_str()))?;
         insert(ROUTE_LABEL, SadValue::Text(self.route))?;
         insert(ANCHORS_LABEL, SadValue::Map(self.attributes))?;
 
@@ -155,7 +241,11 @@ impl ReplyBuilder {
             Said::compute(&fields, DigestAlgorithm::Blake3_256, DEFAULT_SAID_LABEL).map_err(EventError::said)?;
         let (said, completed) = computation.into_parts();
         let serialized = SerializedEvent::from_sad(completed).map_err(EventError::serialization)?;
-        Ok(ReplyMessage { serialized, said })
+        Ok(ReplyMessage {
+            serialized,
+            said,
+            timestamp: self.timestamp,
+        })
     }
 }
 

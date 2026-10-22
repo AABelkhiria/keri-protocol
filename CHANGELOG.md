@@ -15,6 +15,9 @@
   arguments, verified against keripy's builder, askers and field table; `EventKind::Query`.
 - `event::key_state`: builds, reads and compares the key state record a `ksn` query is answered
   with, verified against keripy's `state`, `KeyStateRecord` and `diffState`.
+- `event::reply::route`: typed `/end/role`, `/loc/scheme`, `/ksn` and `/watcher` reply routes,
+  and `ReplyMessage::from_serialized`, verified by running replies through keripy's router and
+  handlers.
 
 ## [0.1.0] - 2026-10-10
 

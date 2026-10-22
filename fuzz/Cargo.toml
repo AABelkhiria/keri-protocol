@@ -76,6 +76,13 @@ doc = false
 bench = false
 
 [[bin]]
+name = "reply_route"
+path = "fuzz_targets/reply_route.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
 name = "said"
 path = "fuzz_targets/said.rs"
 test = false

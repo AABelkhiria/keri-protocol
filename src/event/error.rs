@@ -187,6 +187,33 @@ pub enum EventError {
     },
     /// Two key states being compared belong to different identifiers.
     IdentifierMismatch,
+    /// A reply's route is not one any KERI actor handles.
+    UnknownReplyRoute {
+        /// Bounded copy of the route.
+        route: String,
+    },
+    /// A reply lacks an attribute its route requires.
+    MissingAttribute {
+        /// The required attribute.
+        label: &'static str,
+    },
+    /// A reply names a role KERI does not define.
+    UnknownRole {
+        /// Bounded copy of the role found.
+        found: String,
+    },
+    /// A reply names a transport scheme KERI does not define.
+    UnknownScheme {
+        /// Bounded copy of the scheme found.
+        found: String,
+    },
+    /// A location's URL names a different scheme than the location declares.
+    UrlSchemeMismatch {
+        /// The declared scheme.
+        scheme: &'static str,
+        /// Bounded copy of the scheme the URL names.
+        found: String,
+    },
     /// A message read from a stream does not carry exactly the fields its kind defines.
     ///
     /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
@@ -375,6 +402,11 @@ impl fmt::Display for EventError {
             | Self::InvalidLatestEventKind { .. }
             | Self::UnknownConfigurationTrait { .. }
             | Self::IdentifierMismatch
+            | Self::UnknownReplyRoute { .. }
+            | Self::MissingAttribute { .. }
+            | Self::UnknownRole { .. }
+            | Self::UnknownScheme { .. }
+            | Self::UrlSchemeMismatch { .. }
             | Self::UnexpectedFieldShape { .. }
             | Self::MissingQueryKey { .. }
             | Self::UnexpectedFieldLayout { .. } => self.fmt_read_failure(formatter),
@@ -405,6 +437,13 @@ impl EventError {
                 write!(formatter, "key state carries unknown configuration trait {found:?}")
             }
             Self::IdentifierMismatch => formatter.write_str("key states belong to different identifiers"),
+            Self::UnknownReplyRoute { route } => write!(formatter, "reply route {route:?} has no handler"),
+            Self::MissingAttribute { label } => write!(formatter, "reply lacks the required attribute {label:?}"),
+            Self::UnknownRole { found } => write!(formatter, "unknown endpoint role {found:?}"),
+            Self::UnknownScheme { found } => write!(formatter, "unknown transport scheme {found:?}"),
+            Self::UrlSchemeMismatch { scheme, found } => {
+                write!(formatter, "location URL names scheme {found:?} but declares {scheme:?}")
+            }
             Self::UnexpectedFieldShape { label } => {
                 write!(formatter, "message field {label:?} has an unexpected shape")
             }

@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "upstream": "https://github.com/WebOfTrust/keripy.git",
+  "reference_sha": "4ce4cc79e06653f77342be1bf604086b89b1f090",
+  "reference_version": "1.3.6",
+  "generated_on": "2026-10-22",
+  "sources": [
+    "src/keri/core/eventing.py",
+    "src/keri/core/routing.py",
+    "src/keri/kering.py"
+  ],
+  "timestamp": "2021-01-01T00:00:00.000000+00:00",
+  "roles": [
+    "controller",
+    "witness",
+    "registrar",
+    "gateway",
+    "watcher",
+    "judge",
+    "juror",
+    "peer",
+    "mailbox",
+    "agent",
+    "indexer"
+  ],
+  "schemes": [
+    "tcp",
+    "http",
+    "https"
+  ],
+  "cases": [
+    {
+      "name": "end_role_add_watcher",
+      "route": "/end/role/add",
+      "attributes_json": "{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}",
+      "said": "EFLU1AMxr8gnumpzkL-owHTpB5abkGydACIY4mnuaI-v",
+      "raw": "{\"v\":\"KERI10JSON000113_\",\"t\":\"rpy\",\"d\":\"EFLU1AMxr8gnumpzkL-owHTpB5abkGydACIY4mnuaI-v\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131335f222c2274223a22727079222c2264223a2245464c5531414d787238676e756d707a6b4c2d6f77485470423561626b47796441434959346d6e7561492d76222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "keripy_outcome": {
+        "handler": "end_role",
+        "keys": [
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7",
+          "watcher",
+          "BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd"
+        ],
+        "allowed": true
+      }
+    },
+    {
+      "name": "end_role_cut_witness",
+      "route": "/end/role/cut",
+      "attributes_json": "{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"witness\",\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"}",
+      "said": "EEW4E5whCdImrcrwko8gAoC_R2EQl3Lz6G5Jh7gbqUbH",
+      "raw": "{\"v\":\"KERI10JSON000113_\",\"t\":\"rpy\",\"d\":\"EEW4E5whCdImrcrwko8gAoC_R2EQl3Lz6G5Jh7gbqUbH\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/cut\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"witness\",\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131335f222c2274223a22727079222c2264223a2245455734453577684364496d726372776b6f3867416f435f523245516c334c7a3647354a6837676271556248222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f637574222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a227769746e657373222c22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358227d7d",
+      "keripy_outcome": {
+        "handler": "end_role",
+        "keys": [
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7",
+          "witness",
+          "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X"
+        ],
+        "allowed": false
+      }
+    },
+    {
+      "name": "loc_scheme_http",
+      "route": "/loc/scheme",
+      "attributes_json": "{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"http://127.0.0.1:5642/\"}",
+      "said": "EKGmW5uQc1TkuJmFG92CsDfv66Ptut64ynhoc-PvAWjm",
+      "raw": "{\"v\":\"KERI10JSON0000fa_\",\"t\":\"rpy\",\"d\":\"EKGmW5uQc1TkuJmFG92CsDfv66Ptut64ynhoc-PvAWjm\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"http://127.0.0.1:5642/\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303066615f222c2274223a22727079222c2264223a22454b476d573575516331546b754a6d4647393243734466763636507475743634796e686f632d507641576a6d222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a2268747470222c2275726c223a22687474703a2f2f3132372e302e302e313a353634322f227d7d",
+      "keripy_outcome": {
+        "handler": "loc_scheme",
+        "keys": [
+          "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+          "http"
+        ],
+        "url": "http://127.0.0.1:5642/"
+      }
+    },
+    {
+      "name": "loc_scheme_https_uppercase_url",
+      "route": "/loc/scheme",
+      "attributes_json": "{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"https\",\"url\":\"HTTPS://witness.example.org/\"}",
+      "said": "EAcUO0FjJXFPHH1boyNJ6beSxsuyzyLtxqe-DnK-wfOp",
+      "raw": "{\"v\":\"KERI10JSON000101_\",\"t\":\"rpy\",\"d\":\"EAcUO0FjJXFPHH1boyNJ6beSxsuyzyLtxqe-DnK-wfOp\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"https\",\"url\":\"HTTPS://witness.example.org/\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303130315f222c2274223a22727079222c2264223a22454163554f30466a4a584650484831626f794e4a36626553787375797a794c747871652d446e4b2d77664f70222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a226874747073222c2275726c223a2248545450533a2f2f7769746e6573732e6578616d706c652e6f72672f227d7d",
+      "keripy_outcome": {
+        "handler": "loc_scheme",
+        "keys": [
+          "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+          "https"
+        ],
+        "url": "HTTPS://witness.example.org/"
+      }
+    },
+    {
+      "name": "loc_scheme_without_url_scheme",
+      "route": "/loc/scheme",
+      "attributes_json": "{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"tcp\",\"url\":\"//127.0.0.1:5632\"}",
+      "said": "EIyNCOyUwEHm4NWS5CxBvoowBZ127VbUGyxZZyqiUddv",
+      "raw": "{\"v\":\"KERI10JSON0000f3_\",\"t\":\"rpy\",\"d\":\"EIyNCOyUwEHm4NWS5CxBvoowBZ127VbUGyxZZyqiUddv\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"tcp\",\"url\":\"//127.0.0.1:5632\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303066335f222c2274223a22727079222c2264223a224549794e434f79557745486d344e575335437842766f6f77425a3132375662554779785a5a79716955646476222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a22746370222c2275726c223a222f2f3132372e302e302e313a35363332227d7d",
+      "keripy_outcome": {
+        "handler": "loc_scheme",
+        "keys": [
+          "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+          "tcp"
+        ],
+        "url": "//127.0.0.1:5632"
+      }
+    },
+    {
+      "name": "loc_scheme_withdrawn",
+      "route": "/loc/scheme",
+      "attributes_json": "{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"\"}",
+      "said": "ECPur1TLqyPU84VEcz3E7TVGe2HYuzvHsBfcv-m2cbHC",
+      "raw": "{\"v\":\"KERI10JSON0000e4_\",\"t\":\"rpy\",\"d\":\"ECPur1TLqyPU84VEcz3E7TVGe2HYuzvHsBfcv-m2cbHC\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303065345f222c2274223a22727079222c2264223a22454350757231544c7179505538345645637a33453754564765324859757a764873426663762d6d3263624843222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a2268747470222c2275726c223a22227d7d",
+      "keripy_outcome": {
+        "handler": "loc_scheme",
+        "keys": [
+          "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+          "http"
+        ],
+        "url": ""
+      }
+    },
+    {
+      "name": "key_state_notice",
+      "route": "/ksn/BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+      "attributes_json": "{\"vn\":[1,0],\"i\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"s\":\"0\",\"p\":\"\",\"d\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"1\",\"b\":[\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"br\":[],\"ba\":[]},\"di\":\"\"}",
+      "said": "EPn3nr5Wg28RaBTdLJtYo2491-ODMXADx8aLglnTg0oH",
+      "raw": "{\"v\":\"KERI10JSON000292_\",\"t\":\"rpy\",\"d\":\"EPn3nr5Wg28RaBTdLJtYo2491-ODMXADx8aLglnTg0oH\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/ksn/BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"a\":{\"vn\":[1,0],\"i\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"s\":\"0\",\"p\":\"\",\"d\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"f\":\"0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"et\":\"icp\",\"kt\":\"1\",\"k\":[\"DAOhB7_zzhC-HXDdGOdLwJln5NYwm6UNXx3chmQSVTG4\"],\"nt\":\"1\",\"n\":[\"EERqDvf5wqsMwXCYJmWuUHbTjueSSqTm437sQJbWRHTf\"],\"bt\":\"1\",\"b\":[\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"],\"c\":[],\"ee\":{\"s\":\"0\",\"d\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"br\":[],\"ba\":[]},\"di\":\"\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303239325f222c2274223a22727079222c2264223a2245506e336e72355767323852614254644c4a74596f323439312d4f444d5841447838614c676c6e5467306f48222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6b736e2f42436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c2261223a7b22766e223a5b312c305d2c2269223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c2273223a2230222c2270223a22222c2264223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c2266223a2230222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c226574223a22696370222c226b74223a2231222c226b223a5b2244414f6842375f7a7a68432d48584464474f644c774a6c6e354e59776d36554e58783363686d515356544734225d2c226e74223a2231222c226e223a5b2245455271447666357771734d775843594a6d5775554862546a7565535371546d34333773514a625752485466225d2c226274223a2231222c2262223a5b2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358225d2c2263223a5b5d2c226565223a7b2273223a2230222c2264223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c226272223a5b5d2c226261223a5b5d7d2c226469223a22227d7d",
+      "keripy_outcome": {
+        "handler": "key_state_notice",
+        "source": "BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X",
+        "identifier": "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7",
+        "said": "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7"
+      }
+    },
+    {
+      "name": "watcher_add_with_oobi",
+      "route": "/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/add",
+      "attributes_json": "{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oobi\":\"http://127.0.0.1:5642/oobi/EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7/witness/BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"}",
+      "said": "EOMSkPNKprHgrBdFS1fKMU05GAeTEhn0xK1RcjZfKbGy",
+      "raw": "{\"v\":\"KERI10JSON0001b4_\",\"t\":\"rpy\",\"d\":\"EOMSkPNKprHgrBdFS1fKMU05GAeTEhn0xK1RcjZfKbGy\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oobi\":\"http://127.0.0.1:5642/oobi/EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7/witness/BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303162345f222c2274223a22727079222c2264223a22454f4d536b504e4b70724867724264465331664b4d5530354741655445686e30784b3152636a5a664b624779222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f776174636865722f4243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a73715657642f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c226f6964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c226f6f6269223a22687474703a2f2f3132372e302e302e313a353634322f6f6f62692f45416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b53372f7769746e6573732f42436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358227d7d",
+      "keripy_outcome": {
+        "handler": "add_watched",
+        "keys": [
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7",
+          "BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd",
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7"
+        ],
+        "enabled": true,
+        "oobi": "http://127.0.0.1:5642/oobi/EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7/witness/BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X"
+      }
+    },
+    {
+      "name": "watcher_cut",
+      "route": "/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/cut",
+      "attributes_json": "{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\"}",
+      "said": "EDi9xuAEEzb7EKvhDqmggdCI4E3LHz5OFhYmfxkGMRHA",
+      "raw": "{\"v\":\"KERI10JSON00012e_\",\"t\":\"rpy\",\"d\":\"EDi9xuAEEzb7EKvhDqmggdCI4E3LHz5OFhYmfxkGMRHA\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/cut\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303132655f222c2274223a22727079222c2264223a224544693978754145457a6237454b766844716d67676443493445334c487a354f4668596d66786b474d524841222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f776174636865722f4243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a73715657642f637574222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c226f6964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337227d7d",
+      "keripy_outcome": {
+        "handler": "add_watched",
+        "keys": [
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7",
+          "BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd",
+          "EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7"
+        ],
+        "enabled": false,
+        "oobi": null
+      }
+    }
+  ],
+  "rejected_cases": [
+    {
+      "name": "tampered_said",
+      "raw": "{\"v\":\"KERI10JSON000113_\",\"t\":\"rpy\",\"d\":\"EFLU1AMxr8gnumpzkL-owHTpB5abkGydACIY4mnuAAAA\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131335f222c2274223a22727079222c2264223a2245464c5531414d787238676e756d707a6b4c2d6f77485470423561626b47796441434959346d6e7541414141222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Invalid said = EFLU1AMxr8gnumpzkL-owHTpB5abkGydACIY4mnuAAAA for reply msg={'v': 'KERI10JSON000113_', 't': 'rpy', 'd': 'EFLU1AMxr8gnumpzkL-owHTpB5abkGydACIY4mnuAAAA', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/end/role/add', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'role': 'watcher', 'eid': 'BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd'}}.",
+      "rust_error_category": "Said"
+    },
+    {
+      "name": "unknown_route",
+      "raw": "{\"v\":\"KERI10JSON000114_\",\"t\":\"rpy\",\"d\":\"EE7zRKOaw2CWkjkIRCWfjyfDSDiU9xTsDpuXtRJZL2E4\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/roles/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131345f222c2274223a22727079222c2264223a224545377a524b4f61773243576b6a6b49524357666a79664453446955397854734470755874524a5a4c324534222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c65732f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "No resource is registered to handle route /end/roles/add",
+      "rust_error_category": "UnknownReplyRoute"
+    },
+    {
+      "name": "unknown_end_role_action",
+      "raw": "{\"v\":\"KERI10JSON000114_\",\"t\":\"rpy\",\"d\":\"EMHTTlK88Zkkl4zjSLYOSq-SzOrjCQV0OCfHZh-XS-_Z\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/drop\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131345f222c2274223a22727079222c2264223a22454d4854546c4b38385a6b6b6c347a6a534c594f53712d537a4f726a435156304f4366485a682d58532d5f5a222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f64726f70222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Usupported route=/end/role/drop in rpy msg={'v': 'KERI10JSON000114_', 't': 'rpy', 'd': 'EMHTTlK88Zkkl4zjSLYOSq-SzOrjCQV0OCfHZh-XS-_Z', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/end/role/drop', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'role': 'watcher', 'eid': 'BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd'}}.",
+      "rust_error_category": "UnknownReplyRoute"
+    },
+    {
+      "name": "uppercase_route",
+      "raw": "{\"v\":\"KERI10JSON000113_\",\"t\":\"rpy\",\"d\":\"ELQwDcIpj_C5d9da-8EpakV9GBauReQYGsJd9BHBR2uO\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/END/ROLE/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131335f222c2274223a22727079222c2264223a22454c5177446349706a5f4335643964612d384570616b5639474261755265515947734a64394248425232754f222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f454e442f524f4c452f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Usupported route=/END/ROLE/add in rpy msg={'v': 'KERI10JSON000113_', 't': 'rpy', 'd': 'ELQwDcIpj_C5d9da-8EpakV9GBauReQYGsJd9BHBR2uO', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/END/ROLE/add', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'role': 'watcher', 'eid': 'BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd'}}.",
+      "rust_error_category": "UnknownReplyRoute"
+    },
+    {
+      "name": "trailing_slash",
+      "raw": "{\"v\":\"KERI10JSON0000e5_\",\"t\":\"rpy\",\"d\":\"EEgkZSQUOL2oQs30aWx_giaPgO_96xetBSzysvclmdTH\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme/\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303065355f222c2274223a22727079222c2264223a224545676b5a5351554f4c326f517333306157785f67696150674f5f393678657442537a797376636c6d645448222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d652f222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a2268747470222c2275726c223a22227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "No resource is registered to handle route /loc/scheme/",
+      "rust_error_category": "UnknownReplyRoute"
+    },
+    {
+      "name": "unknown_watcher_action",
+      "raw": "{\"v\":\"KERI10JSON00012f_\",\"t\":\"rpy\",\"d\":\"EMnHWHad-E5t62eAYRhfOD6a7iIYddQtXKlESlRgIshF\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/drop\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"oid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303132665f222c2274223a22727079222c2264223a22454d6e48574861642d45357436326541595268664f4436613769495964645174584b6c45536c526749736846222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f776174636865722f4243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a73715657642f64726f70222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c226f6964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Usupported route=/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/drop in rpy msg={'v': 'KERI10JSON00012f_', 't': 'rpy', 'd': 'EMnHWHad-E5t62eAYRhfOD6a7iIYddQtXKlESlRgIshF', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/watcher/BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd/drop', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'oid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7'}}.",
+      "rust_error_category": "UnknownReplyRoute"
+    },
+    {
+      "name": "end_role_without_endpoint",
+      "raw": "{\"v\":\"KERI10JSON0000de_\",\"t\":\"rpy\",\"d\":\"EOG46SHjyf6j9i6iZoRm8naXyfg0d1_LX7RNoIJ45SiC\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"watcher\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303064655f222c2274223a22727079222c2264223a22454f47343653486a7966366a396936695a6f526d386e61587966673064315f4c5837524e6f494a3435536943222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2277617463686572227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Missing element=eid from attributes in rpy msg={'v': 'KERI10JSON0000de_', 't': 'rpy', 'd': 'EOG46SHjyf6j9i6iZoRm8naXyfg0d1_LX7RNoIJ45SiC', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/end/role/add', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'role': 'watcher'}}.",
+      "rust_error_category": "MissingAttribute"
+    },
+    {
+      "name": "capitalised_role",
+      "raw": "{\"v\":\"KERI10JSON000113_\",\"t\":\"rpy\",\"d\":\"EFrANvqmYZlu9Bmkgtujh9GMl_YpKDTbg4feR9lmQh_y\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/end/role/add\",\"a\":{\"cid\":\"EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7\",\"role\":\"Watcher\",\"eid\":\"BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303131335f222c2274223a22727079222c2264223a22454672414e76716d595a6c7539426d6b6774756a6839474d6c5f59704b4454626734666552396c6d51685f79222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f656e642f726f6c652f616464222c2261223a7b22636964223a2245416b457970785961794f7263364d36463767442d39456833343176636d69626b5a78556c635069354b5337222c22726f6c65223a2257617463686572222c22656964223a224243564475535f78435655525232726367326e62626479544e6d576847586a646f55424f34515a7371565764227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Invalid role=Watcher from attributes in rpy msg={'v': 'KERI10JSON000113_', 't': 'rpy', 'd': 'EFrANvqmYZlu9Bmkgtujh9GMl_YpKDTbg4feR9lmQh_y', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/end/role/add', 'a': {'cid': 'EAkEypxYayOrc6M6F7gD-9Eh341vcmibkZxUlcPi5KS7', 'role': 'Watcher', 'eid': 'BCVDuS_xCVURR2rcg2nbbdyTNmWhGXjdoUBO4QZsqVWd'}}.",
+      "rust_error_category": "UnknownRole"
+    },
+    {
+      "name": "unknown_scheme",
+      "raw": "{\"v\":\"KERI10JSON0000e3_\",\"t\":\"rpy\",\"d\":\"EFp9WsD8FsZfpfroNvl9vrk5-7VPBNoYjj-DyaX-WbNu\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"ftp\",\"url\":\"\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303065335f222c2274223a22727079222c2264223a22454670395773443846735a667066726f4e766c3976726b352d375650424e6f596a6a2d447961582d57624e75222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a22667470222c2275726c223a22227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Invalid scheme=ftp from attributes in rpy msg={'v': 'KERI10JSON0000e3_', 't': 'rpy', 'd': 'EFp9WsD8FsZfpfroNvl9vrk5-7VPBNoYjj-DyaX-WbNu', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/loc/scheme', 'a': {'eid': 'BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X', 'scheme': 'ftp', 'url': ''}}.",
+      "rust_error_category": "UnknownScheme"
+    },
+    {
+      "name": "url_with_another_scheme",
+      "raw": "{\"v\":\"KERI10JSON0000ee_\",\"t\":\"rpy\",\"d\":\"EHIg3W3R8InZggjXIULTPPPycx_bl791SdE9X0w3Dsho\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"https://x/\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303065655f222c2274223a22727079222c2264223a22454849673357335238496e5a67676a5849554c545050507963785f626c37393153644539583077334473686f222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a2268747470222c2275726c223a2268747470733a2f2f782f227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Invalid url=https://x/ for scheme=http from attributes in rpy msg={'v': 'KERI10JSON0000ee_', 't': 'rpy', 'd': 'EHIg3W3R8InZggjXIULTPPPycx_bl791SdE9X0w3Dsho', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/loc/scheme', 'a': {'eid': 'BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X', 'scheme': 'http', 'url': 'https://x/'}}.",
+      "rust_error_category": "UrlSchemeMismatch"
+    },
+    {
+      "name": "host_and_port_without_scheme",
+      "raw": "{\"v\":\"KERI10JSON0000f2_\",\"t\":\"rpy\",\"d\":\"ENksTZBAvgTnpZCTL0wUR5KzOdMIgtFlmGUhasDqnAj0\",\"dt\":\"2021-01-01T00:00:00.000000+00:00\",\"r\":\"/loc/scheme\",\"a\":{\"eid\":\"BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X\",\"scheme\":\"http\",\"url\":\"localhost:5642\"}}",
+      "raw_hex": "7b2276223a224b45524931304a534f4e3030303066325f222c2274223a22727079222c2264223a22454e6b73545a42417667546e705a43544c30775552354b7a4f644d496774466c6d475568617344716e416a30222c226474223a22323032312d30312d30315430303a30303a30302e3030303030302b30303a3030222c2272223a222f6c6f632f736368656d65222c2261223a7b22656964223a2242436d7375754642764d7277736934616c4e4e4e43386332486c4a74435f3453794a6555764a4d696c6d3358222c22736368656d65223a2268747470222c2275726c223a226c6f63616c686f73743a35363432227d7d",
+      "reference_error_category": "ValidationError",
+      "reference_error_message": "Invalid url=localhost:5642 for scheme=http from attributes in rpy msg={'v': 'KERI10JSON0000f2_', 't': 'rpy', 'd': 'ENksTZBAvgTnpZCTL0wUR5KzOdMIgtFlmGUhasDqnAj0', 'dt': '2021-01-01T00:00:00.000000+00:00', 'r': '/loc/scheme', 'a': {'eid': 'BCmsuuFBvMrwsi4alNNNC8c2HlJtC_4SyJeUvJMilm3X', 'scheme': 'http', 'url': 'localhost:5642'}}.",
+      "rust_error_category": "UrlSchemeMismatch"
+    }
+  ]
+}
