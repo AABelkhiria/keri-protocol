@@ -3,6 +3,13 @@
 > Following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 > and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `stream`: parses incoming KERI v1 message streams back into events and typed attachment
+  groups, the inverse of `attachment`, verified against keripy's parser.
+
 ## [0.1.0] - 2026-10-10
 
 First release, extracted from the signify-rs project with its history.

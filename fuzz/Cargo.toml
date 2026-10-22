@@ -69,6 +69,13 @@ doc = false
 bench = false
 
 [[bin]]
+name = "stream"
+path = "fuzz_targets/stream.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
 name = "threshold"
 path = "fuzz_targets/threshold.rs"
 test = false

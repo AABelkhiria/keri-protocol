@@ -4,7 +4,8 @@
 //! the message serializer and parser; [`said`] and [`prefix`] derive and verify self-addressing
 //! identifiers and identifier prefixes; [`threshold`] holds exact signing thresholds; [`event`]
 //! builds key events, exchange and reply messages; [`attachment`] composes CESR attachments around
-//! a message; and [`registry`] builds the TEL registry inception event.
+//! a message; [`stream`] parses incoming messages and their attachments back out of a stream; and
+//! [`registry`] builds the TEL registry inception event.
 
 #![forbid(unsafe_code)]
 
@@ -14,4 +15,5 @@ pub mod prefix;
 pub mod registry;
 pub mod said;
 pub mod serialization;
+pub mod stream;
 pub mod threshold;

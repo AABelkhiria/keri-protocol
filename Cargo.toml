@@ -22,6 +22,10 @@ proptest = { version = "1.11.0", default-features = false, features = ["std"] }
 serde = { version = "1.0.228", features = ["derive"] }
 
 [[bench]]
+name = "stream"
+harness = false
+
+[[bench]]
 name = "threshold"
 harness = false
 
