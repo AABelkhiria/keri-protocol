@@ -9,6 +9,8 @@
 
 - `stream`: parses incoming KERI v1 message streams back into events and typed attachment
   groups, the inverse of `attachment`, verified against keripy's parser.
+- `event::receipt`: builds and reads the `rct` receipt message, verified against keripy's
+  builder and field table.
 
 ## [0.1.0] - 2026-10-10
 

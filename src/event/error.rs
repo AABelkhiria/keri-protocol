@@ -6,6 +6,7 @@ use std::error::Error;
 use keri_cesr::CesrError;
 use keri_cesr::crypto::CryptoError;
 
+use crate::event::kind::EventKind;
 use crate::prefix::PrefixError;
 use crate::said::SaidError;
 use crate::serialization::{SadError, SerializationError};
@@ -154,6 +155,23 @@ pub enum EventError {
     ValueOutOfRange {
         /// Stable name of the quantity that overflowed.
         context: &'static str,
+    },
+    /// A message read from a stream is not the kind the reader expected.
+    UnexpectedKind {
+        /// The kind the reader expected.
+        expected: EventKind,
+        /// Bounded copy of the kind found in the `t` field.
+        found: String,
+    },
+    /// A message read from a stream does not carry exactly the fields its kind defines.
+    ///
+    /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
+    /// any way, so the Rust readers do the same rather than ignore what they do not recognise.
+    UnexpectedFieldLayout {
+        /// The labels the kind defines, in order.
+        expected: &'static str,
+        /// Bounded copy of the labels found, in order.
+        found: String,
     },
     /// Identifier-prefix derivation failed.
     Prefix {
@@ -307,6 +325,12 @@ impl fmt::Display for EventError {
                 "attachment for embed {label:?} needs {quadlets} quadlets, more than its counter can express"
             ),
             Self::ValueOutOfRange { context } => write!(formatter, "{context} exceeds its encodable range"),
+            Self::UnexpectedKind { expected, found } => {
+                write!(formatter, "message kind {found:?} is not {}", expected.as_str())
+            }
+            Self::UnexpectedFieldLayout { expected, found } => {
+                write!(formatter, "message fields {found:?} are not the layout {expected:?}")
+            }
             Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
             Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
             Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),

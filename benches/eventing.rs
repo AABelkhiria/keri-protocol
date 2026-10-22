@@ -17,6 +17,7 @@ use keri_protocol::event::KeyEvent;
 use keri_protocol::event::exchange::{ExchangeBuilder, ExchangeEmbed};
 use keri_protocol::event::inception::InceptionBuilder;
 use keri_protocol::event::interaction::InteractionBuilder;
+use keri_protocol::event::receipt::ReceiptBuilder;
 use keri_protocol::event::reply::ReplyBuilder;
 use keri_protocol::event::rotation::RotationBuilder;
 use keri_protocol::event::timestamp::Timestamp;
@@ -225,5 +226,19 @@ fn benchmark_attachments(criterion: &mut Criterion, root: &KeyEvent) {
     }
 }
 
-criterion_group!(benches, benchmark_eventing);
+/// A witness builds one receipt per event it receives; the message is small and carries no
+/// digest of its own, so this measures serialization alone.
+fn benchmark_receipt(criterion: &mut Criterion) {
+    let (Ok(identifier), Ok(said)) = (
+        IdentifierPrefix::from_qb64(BENCH_IDENTIFIER),
+        Said::from_qb64(BENCH_IDENTIFIER),
+    ) else {
+        return;
+    };
+    criterion.bench_function("build_receipt", |bencher| {
+        bencher.iter(|| ReceiptBuilder::new(black_box(identifier.clone()), 7, said).build());
+    });
+}
+
+criterion_group!(benches, benchmark_eventing, benchmark_receipt);
 criterion_main!(benches);

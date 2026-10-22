@@ -5,9 +5,11 @@
 //! builder produces a [`KeyEvent`] carrying the exact wire bytes together with the identifier and
 //! SAID a caller needs for the next event in the log.
 //!
-//! [`reply`] is the only supporting event builder the pinned reference exports. Receipt,
-//! validator-receipt, and key-state messages have no builder there at all, and the `qry` ilk is
-//! absent from its table entirely, so none of those is invented here.
+//! [`reply`] is the only supporting event builder the pinned signify-ts reference exports.
+//! [`receipt`] builds and reads the `rct` message that reference never constructs, ported from
+//! keripy instead. Validator-receipt and key-state messages have no builder in either reference's
+//! public API, and the `qry` ilk is absent from signify-ts's table, so those are not invented
+//! here.
 //!
 //! [`exchange`] builds the routed message controllers send each other, together with the embedded
 //! messages and transposed attachments it carries. CESR attachments themselves are the
@@ -20,6 +22,7 @@ pub mod inception;
 pub mod interaction;
 mod key_event;
 pub mod kind;
+pub mod receipt;
 pub mod reply;
 pub mod rotation;
 pub mod timestamp;
