@@ -11,6 +11,8 @@
   groups, the inverse of `attachment`, verified against keripy's parser.
 - `event::receipt`: builds and reads the `rct` receipt message, verified against keripy's
   builder and field table.
+- `event::query`: builds and reads the `qry` query message with typed `logs`, `ksn` and `mbx`
+  arguments, verified against keripy's builder, askers and field table; `EventKind::Query`.
 
 ## [0.1.0] - 2026-10-10
 

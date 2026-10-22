@@ -141,12 +141,16 @@ fn the_reference_exports_only_one_supporting_builder() -> Result<(), Box<dyn Err
     assert!(fixture.ilks.iter().any(|ilk| ilk == "rct"));
     assert!(fixture.ilks.iter().any(|ilk| ilk == "vrc"));
     assert!(!fixture.ilks.iter().any(|ilk| ilk == "qry"));
-    // Rust's own table agrees.
+    // Rust's own table holds the reference's entries plus `qry`, which comes from keripy.
     let rust: Vec<&str> = EventKind::ALL.iter().map(|kind| kind.as_str()).collect();
     for ilk in &fixture.ilks {
         assert!(rust.contains(&ilk.as_str()), "Rust is missing ilk {ilk}");
     }
-    assert_eq!(rust.len(), fixture.ilks.len());
+    let extra: Vec<&&str> = rust
+        .iter()
+        .filter(|ilk| !fixture.ilks.iter().any(|known| known == *ilk))
+        .collect();
+    assert_eq!(extra, [&"qry"]);
     Ok(())
 }
 

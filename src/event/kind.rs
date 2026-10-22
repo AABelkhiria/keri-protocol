@@ -2,8 +2,8 @@
 //!
 //! This ports the `Ilks` table of the pinned reference's `src/keri/core/core.ts`: the fourteen
 //! three-character message-type codes carried in the `t` field of KERI key events, TEL registry
-//! events, and exchange messages. The pinned table has no `qry` entry, so there is no query
-//! construction here. Unknown ilk text is a typed error, never an implicit string.
+//! events, and exchange messages, plus `qry`, which that table lacks and keripy's `Ilks` declares.
+//! Unknown ilk text is a typed error, never an implicit string.
 
 use core::fmt;
 use std::error::Error;
@@ -11,7 +11,8 @@ use std::str::FromStr;
 
 /// One KERI or ACDC event kind, written as a three-character ilk in the event `t` field.
 ///
-/// Source: the `Ilks` constant of the pinned `src/keri/core/core.ts`, in table order.
+/// Source: the `Ilks` constant of the pinned `src/keri/core/core.ts`, in table order, followed by
+/// the query ilk from keripy's `Ilks`.
 ///
 /// ```
 /// use keri_protocol::event::kind::EventKind;
@@ -52,11 +53,13 @@ pub enum EventKind {
     BackedIssuance,
     /// TEL backed credential revocation event, ilk `brv`.
     BackedRevocation,
+    /// Query message, ilk `qry`. Declared by keripy, absent from the signify-ts table.
+    Query,
 }
 
 impl EventKind {
-    /// Every event kind in the pinned reference's `Ilks` table, in table order.
-    pub const ALL: [Self; 14] = [
+    /// Every event kind in the pinned reference's `Ilks` table, in table order, then `qry`.
+    pub const ALL: [Self; 15] = [
         Self::Inception,
         Self::Rotation,
         Self::Interaction,
@@ -71,6 +74,7 @@ impl EventKind {
         Self::Revocation,
         Self::BackedIssuance,
         Self::BackedRevocation,
+        Self::Query,
     ];
 
     /// Returns the exact three-character ilk text used on the wire.
@@ -91,6 +95,7 @@ impl EventKind {
             Self::Revocation => "rev",
             Self::BackedIssuance => "bis",
             Self::BackedRevocation => "brv",
+            Self::Query => "qry",
         }
     }
 }
@@ -108,7 +113,7 @@ impl FromStr for EventKind {
     ///
     /// # Errors
     ///
-    /// Returns [`EventKindError::Unknown`] for any text outside the fourteen-entry table,
+    /// Returns [`EventKindError::Unknown`] for any text outside the fifteen-entry table,
     /// including empty input, different casing, and surrounding characters.
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         match input {
@@ -126,6 +131,7 @@ impl FromStr for EventKind {
             "rev" => Ok(Self::Revocation),
             "bis" => Ok(Self::BackedIssuance),
             "brv" => Ok(Self::BackedRevocation),
+            "qry" => Ok(Self::Query),
             _ => Err(EventKindError::Unknown {
                 found: input.chars().take(16).collect(),
             }),
@@ -168,7 +174,7 @@ mod tests {
 
     #[test]
     fn table_is_complete_unique_and_round_trips() -> Result<(), EventKindError> {
-        assert_eq!(EventKind::ALL.len(), 14);
+        assert_eq!(EventKind::ALL.len(), 15);
         for (index, kind) in EventKind::ALL.iter().enumerate() {
             assert_eq!(kind.as_str().len(), 3);
             assert!(kind.as_str().bytes().all(|byte| byte.is_ascii_lowercase()));
@@ -184,7 +190,7 @@ mod tests {
 
     #[test]
     fn unknown_ilk_text_is_a_bounded_typed_error() {
-        for rejected in ["", "ICP", "icpp", "ic", "qry", " icp", "icp ", "vcp\n"] {
+        for rejected in ["", "ICP", "icpp", "ic", "QRY", " icp", "icp ", "vcp\n"] {
             assert!(
                 matches!(EventKind::from_str(rejected), Err(EventKindError::Unknown { .. })),
                 "reference table unexpectedly accepted {rejected:?}"

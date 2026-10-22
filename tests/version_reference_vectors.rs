@@ -185,7 +185,8 @@ fn fixture_metadata_and_constants_match_the_pinned_reference() -> Result<(), Box
 #[test]
 fn every_reference_ilk_round_trips_and_the_table_is_complete() -> Result<(), Box<dyn Error>> {
     let fixture = fixture()?;
-    assert_eq!(fixture.ilks.len(), EventKind::ALL.len());
+    // Rust's table is the reference's plus `qry`, which keripy declares and signify-ts does not.
+    assert_eq!(fixture.ilks.len() + 1, EventKind::ALL.len());
     for (key, value) in &fixture.ilks {
         assert_eq!(key, value, "reference ilk key/value mismatch for {key}");
         let kind = EventKind::from_str(value)?;
@@ -193,7 +194,7 @@ fn every_reference_ilk_round_trips_and_the_table_is_complete() -> Result<(), Box
     }
     for kind in EventKind::ALL {
         assert!(
-            fixture.ilks.contains_key(kind.as_str()),
+            fixture.ilks.contains_key(kind.as_str()) || kind == EventKind::Query,
             "Rust ilk {} is not in the reference table",
             kind.as_str()
         );

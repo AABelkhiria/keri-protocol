@@ -17,6 +17,7 @@ use keri_protocol::event::KeyEvent;
 use keri_protocol::event::exchange::{ExchangeBuilder, ExchangeEmbed};
 use keri_protocol::event::inception::InceptionBuilder;
 use keri_protocol::event::interaction::InteractionBuilder;
+use keri_protocol::event::query::{QueryArguments, QueryBuilder};
 use keri_protocol::event::receipt::ReceiptBuilder;
 use keri_protocol::event::reply::ReplyBuilder;
 use keri_protocol::event::rotation::RotationBuilder;
@@ -240,5 +241,26 @@ fn benchmark_receipt(criterion: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, benchmark_eventing, benchmark_receipt);
+/// A watcher builds one query per witness per poll; the message carries a SAID, so this measures
+/// the block composition plus one digest.
+fn benchmark_query(criterion: &mut Criterion) {
+    let (Ok(identifier), Ok(witness), Ok(stamp)) = (
+        IdentifierPrefix::from_qb64(BENCH_IDENTIFIER),
+        IdentifierPrefix::from_qb64(BENCH_WITNESS_KEY),
+        Timestamp::parse(STAMP),
+    ) else {
+        return;
+    };
+    criterion.bench_function("build_key_state_query", |bencher| {
+        bencher.iter(|| {
+            QueryArguments::new(black_box(identifier.clone()), witness.clone())
+                .sequence_number(0)
+                .first_seen(0)
+                .into_sad()
+                .and_then(|block| QueryBuilder::new("ksn", stamp.clone()).query(block).build())
+        });
+    });
+}
+
+criterion_group!(benches, benchmark_eventing, benchmark_receipt, benchmark_query);
 criterion_main!(benches);

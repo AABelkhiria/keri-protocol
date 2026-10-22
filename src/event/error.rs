@@ -7,6 +7,7 @@ use keri_cesr::CesrError;
 use keri_cesr::crypto::CryptoError;
 
 use crate::event::kind::EventKind;
+use crate::event::timestamp::TimestampError;
 use crate::prefix::PrefixError;
 use crate::said::SaidError;
 use crate::serialization::{SadError, SerializationError};
@@ -163,6 +164,16 @@ pub enum EventError {
         /// Bounded copy of the kind found in the `t` field.
         found: String,
     },
+    /// A message field read from a stream does not have the shape its kind defines.
+    UnexpectedFieldShape {
+        /// Label of the field with the wrong shape.
+        label: &'static str,
+    },
+    /// A query block lacks a key every route requires.
+    MissingQueryKey {
+        /// The required key.
+        key: &'static str,
+    },
     /// A message read from a stream does not carry exactly the fields its kind defines.
     ///
     /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
@@ -187,6 +198,11 @@ pub enum EventError {
     Sad {
         /// Underlying value/codec failure.
         source: Box<SadError>,
+    },
+    /// A message timestamp read from a stream is malformed.
+    Timestamp {
+        /// Underlying timestamp failure.
+        source: Box<TimestampError>,
     },
     /// Message sizing or serialization failed.
     Serialization {
@@ -220,6 +236,12 @@ impl EventError {
 
     pub(crate) fn sad(source: SadError) -> Self {
         Self::Sad {
+            source: Box::new(source),
+        }
+    }
+
+    pub(crate) fn timestamp(source: TimestampError) -> Self {
+        Self::Timestamp {
             source: Box::new(source),
         }
     }
@@ -328,12 +350,17 @@ impl fmt::Display for EventError {
             Self::UnexpectedKind { expected, found } => {
                 write!(formatter, "message kind {found:?} is not {}", expected.as_str())
             }
+            Self::UnexpectedFieldShape { label } => {
+                write!(formatter, "message field {label:?} has an unexpected shape")
+            }
+            Self::MissingQueryKey { key } => write!(formatter, "query block lacks the required key {key:?}"),
             Self::UnexpectedFieldLayout { expected, found } => {
                 write!(formatter, "message fields {found:?} are not the layout {expected:?}")
             }
             Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
             Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
             Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),
+            Self::Timestamp { .. } => formatter.write_str("message timestamp is invalid"),
             Self::Serialization { .. } => formatter.write_str("event serialization failed"),
             Self::Crypto { .. } => formatter.write_str("key or digest material is invalid"),
             Self::Cesr { .. } => formatter.write_str("counter or path material is invalid"),
@@ -347,6 +374,7 @@ impl Error for EventError {
             Self::Prefix { source } => Some(source.as_ref()),
             Self::Said { source } => Some(source.as_ref()),
             Self::Sad { source } => Some(source.as_ref()),
+            Self::Timestamp { source } => Some(source.as_ref()),
             Self::Serialization { source } => Some(source.as_ref()),
             Self::Crypto { source } => Some(source.as_ref()),
             Self::InvalidEmbedLabel { source, .. } | Self::Cesr { source } => Some(source.as_ref()),
