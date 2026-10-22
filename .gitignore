@@ -1,7 +1,21 @@
+# Cargo build output
 /target/
+
+# Fuzzing (cargo-fuzz)
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+
+# Reference-vector generator (tools/reference-vectors)
 /tools/reference-vectors/node_modules/
 /tools/reference-vectors/.venv/
 /tools/reference-vectors/__pycache__/
-/fuzz/corpus/
-/fuzz/artifacts/
-/fuzz/target/
+
+# Rustfmt backups and coverage profiles
+*.rs.bk
+*.profraw
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
