@@ -187,6 +187,22 @@ pub enum EventError {
     },
     /// Two key states being compared belong to different identifiers.
     IdentifierMismatch,
+    /// A signature group names an establishment event the signer's log does not hold at that
+    /// sequence number.
+    SignatureGroupMismatch {
+        /// The sequence number the group names.
+        sequence_number: u128,
+    },
+    /// The signer's event a signature group names carries no signing keys.
+    NoSigningKeys {
+        /// The sequence number the group names.
+        sequence_number: u128,
+    },
+    /// Not one signature in a group verifies.
+    NoVerifiedSignatures {
+        /// The sequence number the group names.
+        sequence_number: u128,
+    },
     /// A reply's route is not one any KERI actor handles.
     UnknownReplyRoute {
         /// Bounded copy of the route.
@@ -402,6 +418,9 @@ impl fmt::Display for EventError {
             | Self::InvalidLatestEventKind { .. }
             | Self::UnknownConfigurationTrait { .. }
             | Self::IdentifierMismatch
+            | Self::SignatureGroupMismatch { .. }
+            | Self::NoSigningKeys { .. }
+            | Self::NoVerifiedSignatures { .. }
             | Self::UnknownReplyRoute { .. }
             | Self::MissingAttribute { .. }
             | Self::UnknownRole { .. }
@@ -437,6 +456,19 @@ impl EventError {
                 write!(formatter, "key state carries unknown configuration trait {found:?}")
             }
             Self::IdentifierMismatch => formatter.write_str("key states belong to different identifiers"),
+            Self::SignatureGroupMismatch { sequence_number } => write!(
+                formatter,
+                "signature group names an establishment event the signer does not hold at {sequence_number}"
+            ),
+            Self::NoSigningKeys { sequence_number } => {
+                write!(formatter, "signer's event at {sequence_number} carries no signing keys")
+            }
+            Self::NoVerifiedSignatures { sequence_number } => {
+                write!(
+                    formatter,
+                    "no signature verifies against the signer's keys at {sequence_number}"
+                )
+            }
             Self::UnknownReplyRoute { route } => write!(formatter, "reply route {route:?} has no handler"),
             Self::MissingAttribute { label } => write!(formatter, "reply lacks the required attribute {label:?}"),
             Self::UnknownRole { found } => write!(formatter, "unknown endpoint role {found:?}"),

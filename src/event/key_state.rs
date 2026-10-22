@@ -714,6 +714,22 @@ fn prefix_list(map: &Sad, label: &'static str) -> Result<Vec<IdentifierPrefix>, 
 /// and neither does KERIA, so a number is refused as the wrong shape.
 fn threshold_field(map: &Sad, label: &'static str) -> Result<SigningThreshold, EventError> {
     let value = map.get(label).ok_or(EventError::UnexpectedFieldShape { label })?;
+    threshold_value(value, label, false)
+}
+
+/// Reads a threshold value: hexadecimal text, weight arrays, and, when `allow_integer` is set, a
+/// JSON number, which key events may carry and key state records may not.
+pub(crate) fn threshold_value(
+    value: &SadValue,
+    label: &'static str,
+    allow_integer: bool,
+) -> Result<SigningThreshold, EventError> {
+    if let SadValue::Integer(number) = value
+        && allow_integer
+    {
+        let number = u128::try_from(*number).map_err(|_| EventError::UnexpectedFieldShape { label })?;
+        return Ok(SigningThreshold::numeric(number));
+    }
     let json = threshold_json(value).ok_or(EventError::UnexpectedFieldShape { label })?;
     SigningThreshold::from_json(&json.to_string()).map_err(EventError::threshold)
 }

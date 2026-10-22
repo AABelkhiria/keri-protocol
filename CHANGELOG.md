@@ -18,6 +18,8 @@
 - `event::reply::route`: typed `/end/role`, `/loc/scheme`, `/ksn` and `/watcher` reply routes,
   and `ReplyMessage::from_serialized`, verified by running replies through keripy's router and
   handlers.
+- `event::reply::acceptance`: best-available-data acceptance of a reply over the one already
+  accepted for its route, verified against keripy's `Revery.acceptReply` over real identifiers.
 
 ## [0.1.0] - 2026-10-10
 

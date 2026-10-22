@@ -6,8 +6,10 @@
 //!
 //! This module ports `reply` from `src/keri/core/eventing.ts`, and reads one back the way keripy's
 //! `Revery.processReply` does: the fields must be exactly the reply's, and the SAID must verify.
-//! The routes a reply is addressed to, and what each carries, are [`route`]'s.
+//! The routes a reply is addressed to, and what each carries, are [`route`]'s; whether a reply
+//! replaces the one already accepted for its route is [`acceptance`]'s.
 
+pub mod acceptance;
 pub mod route;
 
 use keri_cesr::crypto::digest::DigestAlgorithm;
