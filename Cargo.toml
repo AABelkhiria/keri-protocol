@@ -1,6 +1,6 @@
 [package]
 name = "keri-protocol"
-version = "0.1.0"
+version = "0.2.0"
 description = "KERI protocol messages: events, SAIDs, prefixes, thresholds and CESR attachments"
 edition = "2024"
 rust-version = "1.97"

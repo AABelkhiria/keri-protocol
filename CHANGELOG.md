@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-23
+
 ### Added
 
 - `stream`: parses incoming KERI v1 message streams back into events and typed attachment
