@@ -29,9 +29,11 @@ use keri_cesr::crypto::signature::{IndexedSignature, UnindexedSignature};
 use keri_cesr::crypto::verifier::VerificationKey;
 use keri_cesr::sequence::SequenceNumber;
 
+use crate::event::timestamp::Timestamp;
 use crate::prefix::{IdentifierPrefix, PrefixError};
 use crate::said::{Said, SaidError};
 use crate::serialization::SerializedEvent;
+use crate::stream::{FirstSeenReplayCouple, ReceiptQuadruple};
 
 use core::fmt;
 use std::error::Error;
@@ -325,6 +327,9 @@ pub struct SignedMessageBuilder<'a> {
     controller_signatures: Vec<IndexedSignature>,
     witness_signatures: Vec<IndexedSignature>,
     receipt_couples: Vec<ReceiptCouple>,
+    source: Option<SealSourceCouple>,
+    receipt_quadruples: Vec<ReceiptQuadruple>,
+    first_seen: Option<FirstSeenReplayCouple>,
     seal: Option<SignatureSeal>,
     framing: AttachmentFraming,
 }
@@ -338,6 +343,9 @@ impl<'a> SignedMessageBuilder<'a> {
             controller_signatures: Vec::new(),
             witness_signatures: Vec::new(),
             receipt_couples: Vec::new(),
+            source: None,
+            receipt_quadruples: Vec::new(),
+            first_seen: None,
             seal: None,
             framing: AttachmentFraming::Plain,
         }
@@ -372,6 +380,30 @@ impl<'a> SignedMessageBuilder<'a> {
         self
     }
 
+    /// Names the event that authorised this one, a delegated event's delegating event, written as
+    /// a `SealSourceCouples` (`-G`) group.
+    #[must_use]
+    pub const fn source(mut self, source: SealSourceCouple) -> Self {
+        self.source = Some(source);
+        self
+    }
+
+    /// Attaches transferable receipt quadruples, validators' signatures of the event, written as a
+    /// `TransReceiptQuadruples` (`-D`) group.
+    #[must_use]
+    pub fn receipt_quadruples(mut self, quadruples: Vec<ReceiptQuadruple>) -> Self {
+        self.receipt_quadruples = quadruples;
+        self
+    }
+
+    /// Says when the replaying party first saw the event, written as a `FirstSeenReplayCouples`
+    /// (`-E`) group, as a log replay carries.
+    #[must_use]
+    pub fn first_seen(mut self, first_seen: FirstSeenReplayCouple) -> Self {
+        self.first_seen = Some(first_seen);
+        self
+    }
+
     /// Binds the signatures to the establishment event that authorises them.
     #[must_use]
     pub fn seal(mut self, seal: SignatureSeal) -> Self {
@@ -388,8 +420,9 @@ impl<'a> SignedMessageBuilder<'a> {
 
     /// Composes the message.
     ///
-    /// Groups are written in the reference order: the controller group (preceded by its seal, if
-    /// any), then witness signatures, then receipt couples.
+    /// Groups are written in the reference order, keripy's `cloneEvtMsg`: the controller group
+    /// (preceded by its seal, if any), witness signatures, the source couple, receipt quadruples,
+    /// receipt couples, then the first-seen couple.
     ///
     /// # Errors
     ///
@@ -439,6 +472,34 @@ impl<'a> SignedMessageBuilder<'a> {
             }
         }
 
+        if let Some(source) = &self.source {
+            attachments.extend_from_slice(&source.attachment(AttachmentFraming::Plain)?);
+        }
+
+        if !self.receipt_quadruples.is_empty() {
+            attachments.extend_from_slice(&counter_bytes(
+                CounterCode::TRANSFERABLE_RECEIPT_QUADRUPLES,
+                checked_count(self.receipt_quadruples.len())?,
+            )?);
+            for quadruple in &self.receipt_quadruples {
+                attachments.extend_from_slice(
+                    quadruple
+                        .identifier()
+                        .qb64()
+                        .map_err(AttachmentError::prefix)?
+                        .as_bytes(),
+                );
+                attachments.extend_from_slice(
+                    &quadruple
+                        .sequence_number()
+                        .qb64_bytes()
+                        .map_err(AttachmentError::cesr)?,
+                );
+                attachments.extend_from_slice(quadruple.said().qb64().map_err(AttachmentError::said)?.as_bytes());
+                attachments.extend_from_slice(&quadruple.signature().qb64_bytes().map_err(AttachmentError::crypto)?);
+            }
+        }
+
         if !self.receipt_couples.is_empty() {
             attachments.extend_from_slice(&counter_bytes(
                 CounterCode::NON_TRANSFERABLE_RECEIPT_COUPLES,
@@ -447,6 +508,12 @@ impl<'a> SignedMessageBuilder<'a> {
             for couple in &self.receipt_couples {
                 couple.encode_into(&mut attachments)?;
             }
+        }
+
+        if let Some(first_seen) = &self.first_seen {
+            attachments.extend_from_slice(&counter_bytes(CounterCode::FIRST_SEEN_REPLAY_COUPLES, 1)?);
+            attachments.extend_from_slice(&first_seen.ordinal().qb64_bytes().map_err(AttachmentError::cesr)?);
+            attachments.extend_from_slice(datetime_qb64(first_seen.timestamp())?.as_bytes());
         }
 
         let attachments = frame(attachments, self.framing)?;
@@ -459,6 +526,32 @@ impl<'a> SignedMessageBuilder<'a> {
             event_length: event.len(),
         })
     }
+}
+
+/// The CESR code of an ISO-8601 datetime primitive, keripy's `Dater`.
+const DATETIME_CODE: &str = "1AAG";
+
+/// Encodes a timestamp as keripy's `Dater` does: its text, with the characters Base64 cannot
+/// carry swapped for ones it can, after the datetime code.
+fn datetime_qb64(timestamp: &Timestamp) -> Result<String, AttachmentError> {
+    let text: String = timestamp
+        .as_str()
+        .chars()
+        .map(|character| match character {
+            ':' => 'c',
+            '.' => 'd',
+            '+' => 'p',
+            other => other,
+        })
+        .collect();
+    let encodable = text.len() == 32
+        && text
+            .chars()
+            .all(|character| character.is_ascii_alphanumeric() || character == '-' || character == '_');
+    if !encodable {
+        return Err(AttachmentError::UnencodableTimestamp);
+    }
+    Ok(format!("{DATETIME_CODE}{text}"))
 }
 
 /// Converts a group's element count into counter range.
@@ -524,6 +617,8 @@ pub enum AttachmentError {
     },
     /// A receipt couple was given a transferable verification key.
     TransferableReceiptKey,
+    /// A first-seen timestamp is not in the form a CESR datetime can carry.
+    UnencodableTimestamp,
     /// Identifier-prefix material could not be encoded.
     Prefix {
         /// Underlying prefix failure.
@@ -591,6 +686,7 @@ impl fmt::Display for AttachmentError {
             Self::TransferableReceiptKey => {
                 formatter.write_str("a receipt couple needs a non-transferable verification key")
             }
+            Self::UnencodableTimestamp => formatter.write_str("timestamp is not in the form a CESR datetime can carry"),
             Self::Prefix { .. } => formatter.write_str("identifier prefix material is invalid"),
             Self::Said { .. } => formatter.write_str("self-addressing identifier material is invalid"),
             Self::Crypto { .. } => formatter.write_str("signature material is invalid"),
@@ -661,6 +757,51 @@ mod tests {
         assert_eq!(core::str::from_utf8(message.attachments())?, format!("-AAB{SIGNATURE}"));
         assert_eq!([message.event(), message.attachments()].concat(), message.as_bytes());
         assert_eq!(message.clone().into_bytes(), message.as_bytes());
+        Ok(())
+    }
+
+    /// A replay carries every group keripy's `cloneEvtMsg` writes, in its order, inside one
+    /// pipelined group; the first-seen time is written as keripy's `Dater` writes it.
+    #[test]
+    fn a_replayed_event_carries_every_group_in_keripys_order() -> Result<(), Box<dyn Error>> {
+        let event = event()?;
+        let witness = IndexedSignature::from_qb64(WITNESS_SIGNATURE)?;
+        let source = SealSourceCouple::new(SequenceNumber::new(1), said()?);
+        let quadruple = ReceiptQuadruple::new(identifier()?, SequenceNumber::new(0), said()?, signature()?);
+        let timestamp = Timestamp::parse("2021-01-01T00:00:00.000000+00:00")?;
+        let first_seen = FirstSeenReplayCouple::new(SequenceNumber::new(1), timestamp.clone());
+        let couple = ReceiptCouple::new(
+            VerificationKey::from_qb64(WITNESS_KEY)?,
+            UnindexedSignature::from_qb64(RECEIPT_SIGNATURE)?,
+        )?;
+        let message = SignedMessageBuilder::new(&event)
+            .controller_signatures(vec![signature()?])
+            .witness_signatures(vec![witness.clone()])
+            .source(source)
+            .receipt_quadruples(vec![quadruple.clone()])
+            .receipt_couples(vec![couple.clone()])
+            .first_seen(first_seen.clone())
+            .framing(AttachmentFraming::Pipelined)
+            .build()?;
+
+        let attachments = core::str::from_utf8(message.attachments())?;
+        let order: Vec<usize> = ["-AAB", "-BAB", "-GAB", "-DAB", "-CAB", "-EAB"]
+            .iter()
+            .map(|code| attachments.find(code).ok_or("a group is missing"))
+            .collect::<Result<_, _>>()?;
+        assert!(order.windows(2).all(|pair| pair.first() < pair.last()), "{attachments}");
+        assert!(attachments.starts_with("-V"));
+        // keripy's `Dater(dts="2021-01-01T00:00:00.000000+00:00").qb64`, as a log replay carries it.
+        assert!(attachments.ends_with("0AAAAAAAAAAAAAAAAAAAAAAB1AAG2021-01-01T00c00c00d000000p00c00"));
+
+        let parsed = crate::stream::Message::from_bytes(message.as_bytes())?;
+        let groups = parsed.attachments();
+        assert_eq!(groups.controller_signatures(), &[signature()?]);
+        assert_eq!(groups.witness_signatures(), &[witness]);
+        assert_eq!(groups.seal_source_couples(), &[source]);
+        assert_eq!(groups.receipt_quadruples(), &[quadruple]);
+        assert_eq!(groups.receipt_couples(), &[couple]);
+        assert_eq!(groups.first_seen_replay_couples(), &[first_seen]);
         Ok(())
     }
 

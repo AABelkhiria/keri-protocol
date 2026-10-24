@@ -96,6 +96,23 @@ pub struct ReceiptQuadruple {
 }
 
 impl ReceiptQuadruple {
+    /// Builds a quadruple: `identifier`'s indexed `signature`, made with the keys of its
+    /// establishment event at `sequence_number` with SAID `said`.
+    #[must_use]
+    pub const fn new(
+        identifier: IdentifierPrefix,
+        sequence_number: SequenceNumber,
+        said: Said,
+        signature: IndexedSignature,
+    ) -> Self {
+        Self {
+            identifier,
+            sequence_number,
+            said,
+            signature,
+        }
+    }
+
     /// Returns the endorser's identifier prefix.
     #[must_use]
     pub const fn identifier(&self) -> &IdentifierPrefix {
@@ -129,6 +146,12 @@ pub struct FirstSeenReplayCouple {
 }
 
 impl FirstSeenReplayCouple {
+    /// Builds a couple: the event was the `ordinal`th first seen, at `timestamp`.
+    #[must_use]
+    pub const fn new(ordinal: SequenceNumber, timestamp: Timestamp) -> Self {
+        Self { ordinal, timestamp }
+    }
+
     /// Returns the first-seen ordinal, the event's position in the replaying party's log.
     #[must_use]
     pub const fn ordinal(&self) -> SequenceNumber {

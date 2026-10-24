@@ -3,9 +3,7 @@
 > Following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 > and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-## [0.2.0] - 2026-10-23
+## [0.2.0] - Unreleased
 
 ### Added
 
@@ -22,6 +20,9 @@
   handlers.
 - `event::reply::acceptance`: best-available-data acceptance of a reply over the one already
   accepted for its route, verified against keripy's `Revery.acceptReply` over real identifiers.
+- `attachment`: `SignedMessageBuilder` writes a delegated event's source couple (`-G`), validators'
+  receipt quadruples (`-D`) and a first-seen couple (`-E`), in the order keripy's `cloneEvtMsg`
+  writes a log replay; `ReceiptQuadruple::new` and `FirstSeenReplayCouple::new` build them.
 
 ## [0.1.0] - 2026-10-10
 
