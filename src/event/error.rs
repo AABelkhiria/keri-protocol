@@ -166,6 +166,16 @@ pub enum EventError {
         /// Bounded copy of the kind found in the `t` field.
         found: String,
     },
+    /// A message read from a stream does not carry exactly the fields its kind defines.
+    ///
+    /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
+    /// any way, so the Rust readers do the same rather than ignore what they do not recognise.
+    UnexpectedFieldLayout {
+        /// The labels the kind defines, in order.
+        expected: &'static str,
+        /// Bounded copy of the labels found, in order.
+        found: String,
+    },
     /// A message field read from a stream does not have the shape its kind defines.
     UnexpectedFieldShape {
         /// Label of the field with the wrong shape.
@@ -188,22 +198,6 @@ pub enum EventError {
     },
     /// Two key states being compared belong to different identifiers.
     IdentifierMismatch,
-    /// A signature group names an establishment event the signer's log does not hold at that
-    /// sequence number.
-    SignatureGroupMismatch {
-        /// The sequence number the group names.
-        sequence_number: u128,
-    },
-    /// The signer's event a signature group names carries no signing keys.
-    NoSigningKeys {
-        /// The sequence number the group names.
-        sequence_number: u128,
-    },
-    /// Not one signature in a group verifies.
-    NoVerifiedSignatures {
-        /// The sequence number the group names.
-        sequence_number: u128,
-    },
     /// A reply's route is not one any KERI actor handles.
     UnknownReplyRoute {
         /// Bounded copy of the route.
@@ -231,15 +225,21 @@ pub enum EventError {
         /// Bounded copy of the scheme the URL names.
         found: String,
     },
-    /// A message read from a stream does not carry exactly the fields its kind defines.
-    ///
-    /// keripy's `SerderKERI` rejects a message whose labels differ from its kind's field table in
-    /// any way, so the Rust readers do the same rather than ignore what they do not recognise.
-    UnexpectedFieldLayout {
-        /// The labels the kind defines, in order.
-        expected: &'static str,
-        /// Bounded copy of the labels found, in order.
-        found: String,
+    /// A signature group names an establishment event the signer's log does not hold at that
+    /// sequence number.
+    SignatureGroupMismatch {
+        /// The sequence number the group names.
+        sequence_number: u128,
+    },
+    /// The signer's event a signature group names carries no signing keys.
+    NoSigningKeys {
+        /// The sequence number the group names.
+        sequence_number: u128,
+    },
+    /// Not one signature in a group verifies.
+    NoVerifiedSignatures {
+        /// The sequence number the group names.
+        sequence_number: u128,
     },
     /// Identifier-prefix material could not be derived, parsed, or encoded.
     Prefix {
@@ -416,20 +416,20 @@ impl fmt::Display for EventError {
             ),
             Self::ValueOutOfRange { context } => write!(formatter, "{context} exceeds its encodable range"),
             Self::UnexpectedKind { .. }
+            | Self::UnexpectedFieldLayout { .. }
+            | Self::UnexpectedFieldShape { .. }
+            | Self::MissingQueryKey { .. }
             | Self::InvalidLatestEventKind { .. }
             | Self::UnknownConfigurationTrait { .. }
             | Self::IdentifierMismatch
-            | Self::SignatureGroupMismatch { .. }
-            | Self::NoSigningKeys { .. }
-            | Self::NoVerifiedSignatures { .. }
             | Self::UnknownReplyRoute { .. }
             | Self::MissingAttribute { .. }
             | Self::UnknownRole { .. }
             | Self::UnknownScheme { .. }
             | Self::UrlSchemeMismatch { .. }
-            | Self::UnexpectedFieldShape { .. }
-            | Self::MissingQueryKey { .. }
-            | Self::UnexpectedFieldLayout { .. } => self.fmt_read_failure(formatter),
+            | Self::SignatureGroupMismatch { .. }
+            | Self::NoSigningKeys { .. }
+            | Self::NoVerifiedSignatures { .. } => self.fmt_inbound_failure(formatter),
             Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
             Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
             Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),
@@ -443,13 +443,20 @@ impl fmt::Display for EventError {
 }
 
 impl EventError {
-    /// Writes the failures raised while reading a message from a stream, kept apart from the
-    /// construction failures above.
-    fn fmt_read_failure(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+    /// Writes the failures raised while reading messages, comparing key states and accepting
+    /// replies, kept apart from the construction failures to bound the length of `fmt`.
+    fn fmt_inbound_failure(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::UnexpectedKind { expected, found } => {
                 write!(formatter, "message kind {found:?} is not {}", expected.as_str())
             }
+            Self::UnexpectedFieldLayout { expected, found } => {
+                write!(formatter, "message fields {found:?} are not the layout {expected:?}")
+            }
+            Self::UnexpectedFieldShape { label } => {
+                write!(formatter, "message field {label:?} has an unexpected shape")
+            }
+            Self::MissingQueryKey { key } => write!(formatter, "query block lacks the required key {key:?}"),
             Self::InvalidLatestEventKind { found } => {
                 write!(formatter, "key state latest event kind {found:?} is not a key event")
             }
@@ -457,6 +464,13 @@ impl EventError {
                 write!(formatter, "key state carries unknown configuration trait {found:?}")
             }
             Self::IdentifierMismatch => formatter.write_str("key states belong to different identifiers"),
+            Self::UnknownReplyRoute { route } => write!(formatter, "reply route {route:?} has no handler"),
+            Self::MissingAttribute { label } => write!(formatter, "reply lacks the required attribute {label:?}"),
+            Self::UnknownRole { found } => write!(formatter, "unknown endpoint role {found:?}"),
+            Self::UnknownScheme { found } => write!(formatter, "unknown transport scheme {found:?}"),
+            Self::UrlSchemeMismatch { scheme, found } => {
+                write!(formatter, "location URL names scheme {found:?} but declares {scheme:?}")
+            }
             Self::SignatureGroupMismatch { sequence_number } => write!(
                 formatter,
                 "signature group names an establishment event the signer does not hold at {sequence_number}"
@@ -470,21 +484,8 @@ impl EventError {
                     "no signature verifies against the signer's keys at {sequence_number}"
                 )
             }
-            Self::UnknownReplyRoute { route } => write!(formatter, "reply route {route:?} has no handler"),
-            Self::MissingAttribute { label } => write!(formatter, "reply lacks the required attribute {label:?}"),
-            Self::UnknownRole { found } => write!(formatter, "unknown endpoint role {found:?}"),
-            Self::UnknownScheme { found } => write!(formatter, "unknown transport scheme {found:?}"),
-            Self::UrlSchemeMismatch { scheme, found } => {
-                write!(formatter, "location URL names scheme {found:?} but declares {scheme:?}")
-            }
-            Self::UnexpectedFieldShape { label } => {
-                write!(formatter, "message field {label:?} has an unexpected shape")
-            }
-            Self::MissingQueryKey { key } => write!(formatter, "query block lacks the required key {key:?}"),
-            Self::UnexpectedFieldLayout { expected, found } => {
-                write!(formatter, "message fields {found:?} are not the layout {expected:?}")
-            }
-            _ => formatter.write_str("message could not be read"),
+            // `fmt` routes only the variants above here.
+            _ => fmt::Debug::fmt(self, formatter),
         }
     }
 }
