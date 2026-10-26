@@ -11,7 +11,7 @@
 //! has no stream parser: it never receives a KERI stream because KERIA parses on its behalf, so
 //! keripy is the reference here and the fixtures under `fixtures/stream-keripy/` are generated
 //! from it. Binary (`qb2`) attachment streams, which keripy also accepts, are refused with
-//! [`StreamError::BinaryStreamUnsupported`] until a sender that emits them exists.
+//! [`StreamError::BinaryStreamUnsupported`].
 //!
 //! # Groups
 //!

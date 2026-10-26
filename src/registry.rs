@@ -229,7 +229,7 @@ impl RegistryInceptionBuilder {
         self.serialize(threshold)
     }
 
-    /// Runs every refusal the reference performs, plus this port's bounds, and resolves the
+    /// Runs every refusal the reference performs, plus this crate's bounds, and resolves the
     /// backer threshold.
     fn validate(&self) -> Result<u32, RegistryError> {
         if self.nonce.len() > MAX_NONCE_BYTES {
