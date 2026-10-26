@@ -375,7 +375,7 @@ impl fmt::Display for EventError {
             ),
             Self::DelegatedPrefixMustBeDigestive { code } => write!(
                 formatter,
-                "delegated inception needs a self-addressing prefix, not derivation code {code}"
+                "delegated inception needs a self-addressing prefix, not derivation code {code:?}"
             ),
             Self::RouteTooLong { length } => write!(
                 formatter,
@@ -430,14 +430,14 @@ impl fmt::Display for EventError {
             | Self::SignatureGroupMismatch { .. }
             | Self::NoSigningKeys { .. }
             | Self::NoVerifiedSignatures { .. } => self.fmt_inbound_failure(formatter),
-            Self::Prefix { .. } => formatter.write_str("identifier prefix derivation failed"),
-            Self::Said { .. } => formatter.write_str("self-addressing identifier derivation failed"),
+            Self::Prefix { .. } => formatter.write_str("identifier prefix is invalid"),
+            Self::Said { .. } => formatter.write_str("self-addressing identifier is invalid"),
             Self::Sad { .. } => formatter.write_str("self-addressing data is invalid"),
             Self::Threshold { .. } => formatter.write_str("threshold is invalid"),
             Self::Timestamp { .. } => formatter.write_str("message timestamp is invalid"),
-            Self::Serialization { .. } => formatter.write_str("event serialization failed"),
-            Self::Crypto { .. } => formatter.write_str("key or digest material is invalid"),
-            Self::Cesr { .. } => formatter.write_str("counter or path material is invalid"),
+            Self::Serialization { .. } => formatter.write_str("message serialization failed"),
+            Self::Crypto { .. } => formatter.write_str("key, digest, or signature material is invalid"),
+            Self::Cesr { .. } => formatter.write_str("CESR material is invalid"),
         }
     }
 }
@@ -448,7 +448,7 @@ impl EventError {
     fn fmt_inbound_failure(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::UnexpectedKind { expected, found } => {
-                write!(formatter, "message kind {found:?} is not {}", expected.as_str())
+                write!(formatter, "message kind {found:?} is not {:?}", expected.as_str())
             }
             Self::UnexpectedFieldLayout { expected, found } => {
                 write!(formatter, "message fields {found:?} are not the layout {expected:?}")
