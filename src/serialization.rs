@@ -11,9 +11,8 @@
 //! hexadecimal digits, and a `_` terminator. The pinned reference instead scans with an unanchored
 //! regular expression, accepts arbitrary surrounding text, coerces hexadecimal version digits with
 //! decimal semantics (`a`–`f` become `NaN`), mutates a module-global default `Version` object on
-//! every successful parse, and emits out-of-range sizes as overlong invalid strings. Those
-//! behaviors are recorded as defects in `fixtures/version/` and are deliberately not
-//! reproduced.
+//! every successful parse, and emits out-of-range sizes as overlong invalid strings. None of
+//! those behaviors is reproduced.
 
 mod event;
 mod sad;
@@ -135,7 +134,7 @@ impl TryFrom<&str> for SerializationKind {
 /// Source: `Version` and `Vrsn_1_0` in the pinned `src/keri/core/core.ts`. Each component is one
 /// lowercase hexadecimal digit on the wire, so values above [`ProtocolVersion::MAX_COMPONENT`] are
 /// unrepresentable and rejected at construction. The reference instead emits two characters for
-/// such values, producing an invalid version string; that defect is fixture-pinned.
+/// such values, producing an invalid version string.
 ///
 /// Fields are private, so an unvalidated value cannot be built outside this module:
 ///

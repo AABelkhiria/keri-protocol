@@ -7,8 +7,7 @@
 //! for every value this module accepts.
 //!
 //! The accepted value space is deliberately narrower than RFC 8259 so that byte parity is provable
-//! rather than hoped for; see [`SadValue::Integer`] and the module's error variants. The
-//! divergences from the reference are pinned by the fixtures.
+//! rather than hoped for; see [`SadValue::Integer`] and the module's error variants.
 
 use core::fmt;
 use std::error::Error;

@@ -7,8 +7,7 @@
 //! the message the recipient hashes is byte-identical to the one the issuer hashed.
 //!
 //! This module ports `src/keri/core/saider.ts`. Two reference behaviors are deliberately not
-//! reproduced because they are unsafe rather than merely different; both are pinned by
-//! `fixtures/said/`:
+//! reproduced because they are unsafe rather than merely different:
 //!
 //! - The reference's default `verify` never inspects the SAD's own identifier field, so it returns
 //!   `true` for a message whose `d` is empty or holds an entirely different SAID. Rust requires the
