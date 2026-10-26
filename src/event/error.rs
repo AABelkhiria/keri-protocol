@@ -1,4 +1,4 @@
-//! Failures raised while constructing KERI key events.
+//! Failures raised while building, reading, comparing and accepting KERI messages.
 
 use core::fmt;
 use std::error::Error;
@@ -13,7 +13,8 @@ use crate::said::SaidError;
 use crate::serialization::{SadError, SerializationError};
 use crate::threshold::ThresholdError;
 
-/// Stable key-event construction failures.
+/// Stable failures of the KERI message builders, readers, key-state comparison and reply
+/// acceptance.
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum EventError {
@@ -240,12 +241,12 @@ pub enum EventError {
         /// Bounded copy of the labels found, in order.
         found: String,
     },
-    /// Identifier-prefix derivation failed.
+    /// Identifier-prefix material could not be derived, parsed, or encoded.
     Prefix {
         /// Underlying prefix failure.
         source: Box<PrefixError>,
     },
-    /// Self-addressing-identifier derivation failed.
+    /// A self-addressing identifier could not be derived, parsed, encoded, or verified.
     Said {
         /// Underlying identifier failure.
         source: Box<SaidError>,
@@ -255,7 +256,7 @@ pub enum EventError {
         /// Underlying value/codec failure.
         source: Box<SadError>,
     },
-    /// A threshold read from a stream is malformed.
+    /// A threshold is malformed or could not be evaluated.
     Threshold {
         /// Underlying threshold failure.
         source: Box<ThresholdError>,
@@ -265,17 +266,17 @@ pub enum EventError {
         /// Underlying timestamp failure.
         source: Box<TimestampError>,
     },
-    /// Message sizing or serialization failed.
+    /// Message sizing, serialization, or parsing failed.
     Serialization {
         /// Underlying serialization failure.
         source: Box<SerializationError>,
     },
-    /// Key or digest material could not be encoded.
+    /// Key, digest, or signature material could not be parsed or encoded.
     Crypto {
         /// Underlying cryptographic failure.
         source: Box<CryptoError>,
     },
-    /// Counter or path material could not be encoded.
+    /// CESR counter, number, or path material could not be parsed or encoded.
     Cesr {
         /// Underlying encoding failure.
         source: Box<CesrError>,
