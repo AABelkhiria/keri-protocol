@@ -3,7 +3,7 @@
 > Following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 > and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2026-10-26
 
 ### Added
 
@@ -23,6 +23,13 @@
 - `attachment`: `SignedMessageBuilder` writes a delegated event's source couple (`-G`), validators'
   receipt quadruples (`-D`) and a first-seen couple (`-E`), in the order keripy's `cloneEvtMsg`
   writes a log replay; `ReceiptQuadruple::new` and `FirstSeenReplayCouple::new` build them.
+
+### Changed
+
+- `EventKind` gains the `Query` variant, so exhaustive matches on it need a new arm, and
+  `EventKind::ALL` now holds fifteen kinds.
+- `EventError` messages for wrapped failures now describe parsing as well as derivation and
+  encoding, and every rejected value is quoted.
 
 ## [0.1.0] - 2026-10-10
 
